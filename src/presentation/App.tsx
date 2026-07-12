@@ -13,6 +13,9 @@ import { InMemoryFarmingRepository } from '../infrastructure/db/repositories/InM
 import { MarkItemAsMastered } from '../application/use-cases/mastery/MarkItemAsMastered';
 import { AddItemToFarmingList } from '../application/use-cases/farming/AddItemToFarmingList';
 
+// Cargar catálogo completo sincronizado de Warframes
+import warframesJson from '../infrastructure/db/data/warframes.json';
+
 // Instanciar repositorios y casos de uso en memoria una sola vez
 const itemRepo = new InMemoryItemRepository();
 const progressRepo = new InMemoryProgressRepository(itemRepo);
@@ -23,13 +26,30 @@ const addItemToFarmingListUseCase = new AddItemToFarmingList(farmingRepo, itemRe
 
 const CURRENT_USER_ID = 'user-grindemia-tenno';
 
-// Catálogo de ítems inicial con imágenes oficiales del repositorio wfcd
-const INITIAL_ITEMS = [
-  new Item({ id: 'wf-excalibur', name: 'Excalibur', uniqueName: 'excalibur', category: 'WARFRAME', masteryPoints: 6000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Excalibur', imageUrl: 'https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/excalibur.png' }),
-  new Item({ id: 'wf-rhino', name: 'Rhino', uniqueName: 'rhino', category: 'WARFRAME', masteryPoints: 6000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Rhino', imageUrl: 'https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/rhino.png' }),
-  new Item({ id: 'wf-ember', name: 'Ember', uniqueName: 'ember', category: 'WARFRAME', masteryPoints: 6000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Ember', imageUrl: 'https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/ember.png' }),
-  new Item({ id: 'wf-loki', name: 'Loki', uniqueName: 'loki', category: 'WARFRAME', masteryPoints: 6000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Loki', imageUrl: 'https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/loki.png' }),
-  
+// Parsear Warframes del dataset JSON sincronizado
+const PARSED_WARFRAMES = (warframesJson as any[]).map(w => {
+  return new Item({
+    id: w.id,
+    name: w.name,
+    uniqueName: w.uniqueName,
+    category: 'WARFRAME',
+    masteryPoints: w.masteryPoints,
+    maxRank: w.maxRank,
+    wikiaUrl: w.wikiaUrl,
+    imageUrl: w.imageUrl,
+    // Guardamos estadísticas relevantes como componentes
+    components: {
+      health: w.health,
+      shield: w.shield,
+      armor: w.armor,
+      energy: w.energy,
+      sprint: w.sprint
+    }
+  });
+});
+
+// Catálogo de armas y compañeros iniciales adicionales
+const INITIAL_WEAPONS_AND_COMPANIONS = [
   new Item({ id: 'wp-hek', name: 'Hek', uniqueName: 'hek', category: 'PRIMARY_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Hek', imageUrl: 'https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/hek.png' }),
   new Item({ id: 'wp-boltor', name: 'Boltor', uniqueName: 'boltor', category: 'PRIMARY_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Boltor', imageUrl: 'https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/boltor.png' }),
   
@@ -42,8 +62,9 @@ const INITIAL_ITEMS = [
   new Item({ id: 'cp-diriga', name: 'Diriga', uniqueName: 'diriga', category: 'COMPANION', masteryPoints: 6000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Diriga', imageUrl: 'https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/diriga.png' }),
 ];
 
-// Seed inicial si el repositorio está vacío
-INITIAL_ITEMS.forEach(i => itemRepo.save(i));
+// Guardar todo el catálogo sincronizado en el repositorio en memoria
+PARSED_WARFRAMES.forEach(w => itemRepo.save(w));
+INITIAL_WEAPONS_AND_COMPANIONS.forEach(w => itemRepo.save(w));
 
 export function App() {
   const [items, setItems] = useState<Item[]>([]);
@@ -103,7 +124,7 @@ export function App() {
       const currentStatus = getItemStatus(itemId);
       
       if (currentStatus === 'MASTERED') {
-        // Alternar estado: si ya está masterizado, regresarlo a PENDING (para interactividad)
+        // Alternar estado: si ya está masterizado, regresarlo a PENDING
         const progress = await progressRepo.findByUserAndItem(CURRENT_USER_ID, itemId);
         if (progress) {
           progress.updateRank(0, 30);
@@ -234,7 +255,7 @@ export function App() {
           <section className="panel">
             <div className="panel-header">
               <h3 className="panel-title">
-                ⚙️ Inventario de Maestría <span>/ Archivos</span>
+                ⚙️ Inventario de Maestría <span>/ Archivos ({filteredItems.length})</span>
               </h3>
             </div>
             <div className="panel-body">
@@ -278,6 +299,35 @@ export function App() {
                         <span className="item-card-xp">
                           {isMastered ? 'MAX RANGO' : `+${item.masteryPoints} XP`}
                         </span>
+
+                        {/* HOVER STATS OVERLAY (Solo para Warframes con stats cargados) */}
+                        {item.category === 'WARFRAME' && item.components && (
+                          <div className="item-stats-overlay">
+                            <h4 style={{ color: 'var(--color-accent-gold)', marginBottom: '0.4rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.2rem', textTransform: 'uppercase', fontSize: '0.8rem', textAlign: 'center' }}>
+                              Estadísticas Base
+                            </h4>
+                            <div className="stat-row">
+                              <span className="stat-label">❤️ Salud</span>
+                              <span className="stat-val red">{item.components.health}</span>
+                            </div>
+                            <div className="stat-row">
+                              <span className="stat-label">🛡️ Escudo</span>
+                              <span className="stat-val cyan">{item.components.shield}</span>
+                            </div>
+                            <div className="stat-row">
+                              <span className="stat-label">⚙️ Armadura</span>
+                              <span className="stat-val">{item.components.armor}</span>
+                            </div>
+                            <div className="stat-row">
+                              <span className="stat-label">⚡ Energía</span>
+                              <span className="stat-val gold">{item.components.energy}</span>
+                            </div>
+                            <div className="stat-row">
+                              <span className="stat-label">🏃 Velocidad</span>
+                              <span className="stat-val cyan">{item.components.sprint}</span>
+                            </div>
+                          </div>
+                        )}
                       </div>
 
                       {/* Barra de progreso inferior en cada carta */}
@@ -296,7 +346,7 @@ export function App() {
                           {isMastered ? '✓ MAX' : 'MASTER'}
                         </button>
                         <button
-                          onClick={() => handleAddToFarm(item.id, 'Añadido desde Inventario')}
+                          onClick={() => handleAddToFarm(item.id, 'Planificado desde Inventario')}
                           className={`btn-slanted btn-slanted-farm ${isFarmed ? 'active' : ''}`}
                           title={isFarmed ? 'Remover del Planificador' : 'Añadir al Planificador'}
                         >
