@@ -1,0 +1,37 @@
+{
+  "name": "grindemia-wf-tracker",
+  "version": "1.0.0",
+  "description": "Warframe Mastery and Farming Tracker for Grindemia YouTube community with Clean Architecture",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "prisma:generate": "prisma generate"
+  },
+  "keywords": [
+    "warframe",
+    "clean-architecture",
+    "mastery",
+    "farming",
+    "typescript",
+    "react",
+    "vite"
+  ],
+  "author": "Grindemia Community",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^5.10.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react": "^4.2.1",
+    "prisma": "^5.10.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.4"
+  }
+}

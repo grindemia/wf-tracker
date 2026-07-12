@@ -1,0 +1,692 @@
+/* 🪐 GRINDEMIA WARFRAME HUD STYLESHEET */
+:root {
+  --color-bg: #070a10;
+  --color-panel: rgba(10, 15, 24, 0.85);
+  --color-panel-header: rgba(15, 23, 36, 0.95);
+  --color-border: rgba(0, 229, 255, 0.2);
+  --color-border-glow: #00e5ff;
+  --color-accent-cyan: #00e5ff;
+  --color-accent-gold: #c3a05b; /* Orokin Gold */
+  --color-accent-orange: #ff5500;
+  --color-text-primary: #f0f3f6;
+  --color-text-secondary: #90a0b0;
+  --color-card-bg: rgba(14, 22, 35, 0.7);
+  --color-success: #00ff66;
+  --color-mastered-card: rgba(195, 160, 91, 0.05);
+  
+  --font-title: 'Orbitron', 'Rajdhani', sans-serif;
+  --font-body: 'Rajdhani', 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(0, 229, 255, 0.04) 0px, transparent 60%),
+    radial-gradient(at 100% 100%, rgba(195, 160, 91, 0.03) 0px, transparent 60%),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 2px);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-x: hidden;
+  letter-spacing: 0.5px;
+}
+
+/* Header & Brand styling */
+.header {
+  border-bottom: 2px solid var(--color-border);
+  background: rgba(4, 7, 12, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 229, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0.75rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-title);
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 3px;
+  color: #fff;
+  text-shadow: 0 0 12px rgba(0, 229, 255, 0.6);
+  text-decoration: none;
+}
+
+.brand span {
+  color: var(--color-accent-cyan);
+}
+
+.youtube-badge {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.5);
+  color: #ff4444;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-family: var(--font-title);
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.youtube-badge:hover {
+  background: rgba(255, 0, 0, 0.25);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+  color: #fff;
+}
+
+/* Layout container */
+.container {
+  max-width: 1300px;
+  margin: 1.5rem auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* User Profile & Mastery Progress HUD */
+.mastery-hud-card {
+  background: var(--color-panel);
+  border: 1px solid var(--color-border);
+  box-shadow: inset 0 0 20px rgba(0, 229, 255, 0.05), 0 10px 30px rgba(0,0,0,0.5);
+  border-radius: 4px;
+  padding: 1.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+}
+
+.mastery-hud-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent-cyan), transparent);
+}
+
+.hud-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tenno-info {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.mastery-sigil {
+  width: 50px;
+  height: 50px;
+  border: 2px solid var(--color-accent-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(195,160,91,0.2) 0%, transparent 70%);
+  font-family: var(--font-title);
+  font-weight: 900;
+  font-size: 1.3rem;
+  color: var(--color-accent-gold);
+  box-shadow: 0 0 15px rgba(195, 160, 91, 0.4);
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+
+.tenno-name {
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 8px rgba(255,255,255,0.2);
+}
+
+.rank-display {
+  border: 1px solid var(--color-accent-gold);
+  background: linear-gradient(135deg, rgba(195,160,91,0.15) 0%, transparent 100%);
+  color: var(--color-accent-gold);
+  padding: 0.4rem 1.2rem;
+  font-family: var(--font-title);
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.xp-bar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.xp-bar-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  font-family: var(--font-title);
+  letter-spacing: 1px;
+}
+
+.xp-bar-bg {
+  height: 6px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.xp-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0088cc, var(--color-accent-cyan));
+  box-shadow: 0 0 8px var(--color-accent-cyan);
+  transition: width 0.6s cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+
+/* Sections grid */
+.grid {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Panel cards representing Warframe Diode/Interface boards */
+.panel {
+  background: var(--color-panel);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.panel::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  background: var(--color-border);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.panel-header {
+  background: var(--color-panel-header);
+  padding: 0.85rem 1.5rem;
+  border-bottom: 2px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-title {
+  font-family: var(--font-title);
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-text-primary);
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.2);
+}
+
+.panel-title span {
+  color: var(--color-accent-cyan);
+}
+
+.panel-body {
+  padding: 1.25rem;
+}
+
+/* Filter controls (Warframe slanted tabs) */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.tab-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--color-text-secondary);
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.35rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+
+.tab-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.tab-btn.active {
+  background: rgba(0, 229, 255, 0.12);
+  border: 1px solid var(--color-accent-cyan);
+  color: var(--color-accent-cyan);
+  text-shadow: 0 0 5px rgba(0, 229, 255, 0.5);
+}
+
+/* Mastery Inventory Grid (Like Warframe's inventory screens) */
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 0.75rem;
+}
+
+/* Item Card styled like Warframe Inventory Slots */
+.item-card {
+  background: var(--color-card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  overflow: hidden;
+}
+
+.item-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 16px 16px 0;
+  border-color: transparent transparent transparent transparent;
+  z-index: 2;
+  transition: border-color 0.25s ease;
+}
+
+/* Hover effects */
+.item-card:hover {
+  border-color: var(--color-accent-cyan);
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.2);
+  transform: translateY(-2px);
+  background: rgba(18, 30, 48, 0.8);
+}
+
+.item-card.mastered {
+  border-color: var(--color-accent-gold);
+  background: linear-gradient(180deg, var(--color-card-bg) 0%, rgba(195,160,91,0.04) 100%);
+}
+
+.item-card.mastered::before {
+  border-color: transparent var(--color-accent-gold) transparent transparent;
+}
+
+/* Inner card elements */
+.item-card-header {
+  padding: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.item-card-cat {
+  font-family: var(--font-title);
+  font-size: 0.65rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.item-card-name {
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.item-card-body {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0.5rem;
+}
+
+.item-thumbnail {
+  max-width: 90%;
+  max-height: 95px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
+  transition: transform 0.3s ease;
+}
+
+.item-card:hover .item-thumbnail {
+  transform: scale(1.05);
+}
+
+.item-card-xp {
+  position: absolute;
+  bottom: 5px;
+  right: 8px;
+  font-size: 0.7rem;
+  font-family: var(--font-title);
+  color: var(--color-accent-cyan);
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.1rem 0.3rem;
+}
+
+.item-card.mastered .item-card-xp {
+  color: var(--color-accent-gold);
+}
+
+/* Card bottom details & action */
+.item-card-footer {
+  background: rgba(4, 7, 12, 0.75);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0.4rem;
+  display: flex;
+  gap: 0.25rem;
+}
+
+/* Inventory card status indicators */
+.rank-indicator-bar {
+  height: 3px;
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.rank-indicator-fill {
+  height: 100%;
+  background: var(--color-accent-cyan);
+}
+
+.item-card.mastered .rank-indicator-fill {
+  background: var(--color-accent-gold);
+  box-shadow: 0 0 5px var(--color-accent-gold);
+}
+
+/* Slanted visual buttons */
+.btn-slanted {
+  font-family: var(--font-title);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  flex-grow: 1;
+}
+
+.btn-slanted-pending {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--color-text-secondary);
+}
+
+.btn-slanted-pending:hover {
+  background: rgba(0, 229, 255, 0.1);
+  border-color: var(--color-accent-cyan);
+  color: var(--color-accent-cyan);
+}
+
+.btn-slanted-mastered {
+  background: rgba(195, 160, 91, 0.15);
+  border: 1px solid var(--color-accent-gold);
+  color: var(--color-accent-gold);
+  text-shadow: 0 0 3px rgba(195, 160, 91, 0.4);
+}
+
+.btn-slanted-mastered:hover {
+  background: rgba(195, 160, 91, 0.3);
+}
+
+.btn-slanted-farm {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--color-text-secondary);
+  flex-grow: 0;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+}
+
+.btn-slanted-farm:hover {
+  border-color: var(--color-accent-gold);
+  color: var(--color-accent-gold);
+  background: rgba(195,160,91,0.08);
+}
+
+.btn-slanted-farm.active {
+  background: rgba(195,160,91,0.2);
+  border-color: var(--color-accent-gold);
+  color: var(--color-accent-gold);
+}
+
+/* Foundry Form elements */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.input-select {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--color-border);
+  color: #fff;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.input-select:focus {
+  border-color: var(--color-accent-cyan);
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+}
+
+.btn-primary-slanted {
+  width: 100%;
+  background: var(--color-accent-cyan);
+  color: #000;
+  border: none;
+  font-family: var(--font-title);
+  font-size: 0.9rem;
+  padding: 0.65rem;
+  cursor: pointer;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.btn-primary-slanted:hover {
+  box-shadow: 0 0 15px var(--color-accent-cyan);
+  background: #fff;
+}
+
+/* Foundry (Farming planner objectives) */
+.farming-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.farming-card {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(195, 160, 91, 0.15);
+  border-left: 3px solid var(--color-accent-gold);
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.farming-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.farming-card-title {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.farming-card-notes {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.4rem 0.6rem;
+  border-left: 2px solid var(--color-accent-cyan);
+}
+
+.btn-claim {
+  background: rgba(0, 255, 102, 0.1);
+  border: 1px solid var(--color-success);
+  color: var(--color-success);
+  font-family: var(--font-title);
+  font-size: 0.65rem;
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+  clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+  transition: all 0.2s ease;
+}
+
+.btn-claim:hover {
+  background: rgba(0, 255, 102, 0.25);
+  box-shadow: 0 0 8px var(--color-success);
+}
+
+/* Guides feed section */
+.guides-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.guide-item {
+  display: flex;
+  gap: 1rem;
+  background: rgba(4, 7, 12, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 0.6rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s ease;
+}
+
+.guide-item:hover {
+  border-color: var(--color-accent-gold);
+  background: rgba(195, 160, 91, 0.03);
+}
+
+.guide-thumb {
+  width: 80px;
+  height: 45px;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.guide-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.guide-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.3;
+}
+
+.guide-views {
+  font-size: 0.7rem;
+  color: var(--color-accent-gold);
+  font-family: var(--font-title);
+  text-transform: uppercase;
+  margin-top: 0.15rem;
+}
+
+/* Scrollbar styles matching the game */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 229, 255, 0.5);
+}
