@@ -39,27 +39,31 @@ https.get(url, (res) => {
           );
         })
         .map((item: any) => {
-          // Normalizar y extraer estadísticas clave
+          // Normalizar y usar el CDN oficial de Warframestat.us para las imágenes
+          const imgUrl = item.imageName 
+            ? `https://cdn.warframestat.us/img/${item.imageName}`
+            : (item.wikiaThumbnail || '');
+
           return {
             id: item.uniqueName.toLowerCase().replace(/[^a-z0-9]/g, '-'),
             name: item.name,
             uniqueName: item.uniqueName,
             category: 'WARFRAME',
             masteryPoints: 6000,
-            maxRank: 30, // Los warframes siempre tienen rango máx 30
+            maxRank: 30,
             health: item.health || 100,
             shield: item.shield || 100,
             armor: item.armor || 100,
-            energy: item.power || 100, // En warframe-items, 'power' representa la energía base
+            energy: item.power || 100,
             sprint: item.sprint || 1.0,
             wikiaUrl: item.wikiaUrl || `https://warframe.fandom.com/wiki/${encodeURIComponent(item.name)}`,
-            imageUrl: item.wikiaThumbnail || `https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/${item.name.toLowerCase().replace(/\s+/g, '-')}.png`
+            imageUrl: imgUrl
           };
         });
 
       // Escribir archivo de salida
       fs.writeFileSync(targetFile, JSON.stringify(warframes, null, 2));
-      console.log(`🎉 Sincronización exitosa: ${warframes.length} Warframes guardados con estadísticas relevantes en: ${targetFile}`);
+      console.log(`🎉 Sincronización exitosa: ${warframes.length} Warframes guardados con CDN de imágenes en: ${targetFile}`);
     } catch (e: any) {
       console.error('❌ Error al procesar JSON:', e.message);
     }

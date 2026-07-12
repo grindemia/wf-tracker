@@ -26,7 +26,7 @@ const addItemToFarmingListUseCase = new AddItemToFarmingList(farmingRepo, itemRe
 
 const CURRENT_USER_ID = 'user-grindemia-tenno';
 
-// Parsear Warframes del dataset JSON sincronizado
+// Parsear Warframes del dataset JSON sincronizado con CDN de imágenes
 const PARSED_WARFRAMES = (warframesJson as any[]).map(w => {
   return new Item({
     id: w.id,
@@ -37,7 +37,6 @@ const PARSED_WARFRAMES = (warframesJson as any[]).map(w => {
     maxRank: w.maxRank,
     wikiaUrl: w.wikiaUrl,
     imageUrl: w.imageUrl,
-    // Guardamos estadísticas relevantes como componentes
     components: {
       health: w.health,
       shield: w.shield,
@@ -48,18 +47,15 @@ const PARSED_WARFRAMES = (warframesJson as any[]).map(w => {
   });
 });
 
-// Catálogo de armas y compañeros iniciales adicionales
+// Catálogo de armas y compañeros iniciales adicionales con CDN de imágenes correctas
 const INITIAL_WEAPONS_AND_COMPANIONS = [
-  new Item({ id: 'wp-hek', name: 'Hek', uniqueName: 'hek', category: 'PRIMARY_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Hek', imageUrl: 'https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/hek.png' }),
-  new Item({ id: 'wp-boltor', name: 'Boltor', uniqueName: 'boltor', category: 'PRIMARY_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Boltor', imageUrl: 'https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/boltor.png' }),
-  
-  new Item({ id: 'wp-lex', name: 'Lex', uniqueName: 'lex', category: 'SECONDARY_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Lex', imageUrl: 'https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/lex.png' }),
-  
-  new Item({ id: 'wp-orthos', name: 'Orthos', uniqueName: 'orthos', category: 'MELEE_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Orthos', imageUrl: 'https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/orthos.png' }),
-  new Item({ id: 'wp-skana', name: 'Skana', uniqueName: 'skana', category: 'MELEE_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Skana', imageUrl: 'https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/skana.png' }),
-  
-  new Item({ id: 'cp-carrier', name: 'Carrier', uniqueName: 'carrier', category: 'COMPANION', masteryPoints: 6000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Carrier', imageUrl: 'https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/carrier.png' }),
-  new Item({ id: 'cp-diriga', name: 'Diriga', uniqueName: 'diriga', category: 'COMPANION', masteryPoints: 6000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Diriga', imageUrl: 'https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/diriga.png' }),
+  new Item({ id: 'wp-hek', name: 'Hek', uniqueName: 'hek', category: 'PRIMARY_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Hek', imageUrl: 'https://cdn.warframestat.us/img/hek.png' }),
+  new Item({ id: 'wp-boltor', name: 'Boltor', uniqueName: 'boltor', category: 'PRIMARY_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Boltor', imageUrl: 'https://cdn.warframestat.us/img/boltor.png' }),
+  new Item({ id: 'wp-lex', name: 'Lex', uniqueName: 'lex', category: 'SECONDARY_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Lex', imageUrl: 'https://cdn.warframestat.us/img/lex.png' }),
+  new Item({ id: 'wp-orthos', name: 'Orthos', uniqueName: 'orthos', category: 'MELEE_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Orthos', imageUrl: 'https://cdn.warframestat.us/img/orthos.png' }),
+  new Item({ id: 'wp-skana', name: 'Skana', uniqueName: 'skana', category: 'MELEE_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Skana', imageUrl: 'https://cdn.warframestat.us/img/skana.png' }),
+  new Item({ id: 'cp-carrier', name: 'Carrier', uniqueName: 'carrier', category: 'COMPANION', masteryPoints: 6000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Carrier', imageUrl: 'https://cdn.warframestat.us/img/carrier.png' }),
+  new Item({ id: 'cp-diriga', name: 'Diriga', uniqueName: 'diriga', category: 'COMPANION', masteryPoints: 6000, maxRank: 30, wikiaUrl: 'https://cdn.warframestat.us/img/diriga.png' }),
 ];
 
 // Guardar todo el catálogo sincronizado en el repositorio en memoria
@@ -70,7 +66,6 @@ export function App() {
   const [items, setItems] = useState<Item[]>([]);
   const [progressList, setProgressList] = useState<UserProgress[]>([]);
   const [farmingList, setFarmingList] = useState<FarmingItem[]>([]);
-  const [totalMasteryXP, setTotalMasteryXP] = useState(0);
 
   // Estados de formularios y filtros
   const [activeTab, setActiveTab] = useState<ItemCategory | 'ALL'>('ALL');
@@ -83,33 +78,29 @@ export function App() {
     const allItems = await itemRepo.findAll();
     const allProg = await progressRepo.findByUser(CURRENT_USER_ID);
     const allFarm = await farmingRepo.findByUser(CURRENT_USER_ID);
-    const xp = await progressRepo.getUserTotalMasteryPoints(CURRENT_USER_ID);
 
     setItems(allItems);
     setProgressList(allProg);
     setFarmingList(allFarm);
-    setTotalMasteryXP(xp);
   };
 
   useEffect(() => {
     fetchAllData();
   }, []);
 
-  // Calcular Rango de Maestría dinámico (Fórmula de progresión del juego)
-  const masteryRank = useMemo(() => {
-    if (totalMasteryXP <= 0) return 0;
-    // Cada rango requiere 1000 * Rango^2 de XP
-    return Math.floor(Math.sqrt(totalMasteryXP / 1000)) + 1;
-  }, [totalMasteryXP]);
+  // Estadísticas del Checklist (en lugar de Rango de Maestría / XP de cuenta)
+  const totalItemsCount = useMemo(() => {
+    return items.length;
+  }, [items]);
 
-  const nextRankXP = useMemo(() => {
-    const nextRank = masteryRank + 1;
-    return (nextRank - 1) * (nextRank - 1) * 1000 + 2000;
-  }, [masteryRank]);
+  const masteredCount = useMemo(() => {
+    return progressList.filter(p => p.status === 'MASTERED').length;
+  }, [progressList]);
 
-  const xpPercent = useMemo(() => {
-    return Math.min(100, Math.round((totalMasteryXP / nextRankXP) * 100));
-  }, [totalMasteryXP, nextRankXP]);
+  const completionPercent = useMemo(() => {
+    if (totalItemsCount === 0) return 0;
+    return Math.round((masteredCount / totalItemsCount) * 100);
+  }, [masteredCount, totalItemsCount]);
 
   // Filtrar ítems de la checklist
   const filteredItems = useMemo(() => {
@@ -124,7 +115,7 @@ export function App() {
       const currentStatus = getItemStatus(itemId);
       
       if (currentStatus === 'MASTERED') {
-        // Alternar estado: si ya está masterizado, regresarlo a PENDING
+        // Alternar estado: regresarlo a PENDING
         const progress = await progressRepo.findByUserAndItem(CURRENT_USER_ID, itemId);
         if (progress) {
           progress.updateRank(0, 30);
@@ -147,7 +138,6 @@ export function App() {
   const handleAddToFarm = async (itemId: string, notes: string = '') => {
     try {
       setErrorMsg('');
-      // Si ya está en la lista de farmeo, lo removemos
       const existing = farmingList.find(f => f.itemId === itemId);
       if (existing) {
         await farmingRepo.delete(CURRENT_USER_ID, itemId);
@@ -155,7 +145,7 @@ export function App() {
         await addItemToFarmingListUseCase.execute({
           userId: CURRENT_USER_ID,
           itemId,
-          notes: notes || 'Farming activo'
+          notes: notes || 'Planificado para farmear'
         });
       }
       await fetchAllData();
@@ -214,12 +204,12 @@ export function App() {
       </header>
 
       <div className="container">
-        {/* HUD DE PROGRESO DEL TENNO (ESTILO WARFRAME) */}
+        {/* HUD DE PROGRESO DE COMPLETADO (SIN MÉTRICA DE EXPERIENCIA/VINCULACIÓN DE CUENTA) */}
         <section className="mastery-hud-card">
           <div className="hud-header">
             <div className="tenno-info">
-              <div className="mastery-sigil">
-                {masteryRank}
+              <div className="mastery-sigil" style={{ fontSize: '1.1rem' }}>
+                {completionPercent}%
               </div>
               <div>
                 <span style={{ color: 'var(--color-accent-gold)', fontSize: '0.75rem', fontFamily: 'var(--font-title)', letterSpacing: '2px', fontWeight: 'bold' }}>
@@ -229,16 +219,16 @@ export function App() {
               </div>
             </div>
             <div className="rank-display">
-              MAESTRÍA: RANGO {masteryRank}
+              COMPLETADO: {masteredCount} / {totalItemsCount}
             </div>
           </div>
           <div className="xp-bar-container">
             <div className="xp-bar-labels">
-              <span>PUNTOS DE MAESTRÍA GENERADOS</span>
-              <span>{totalMasteryXP} / {nextRankXP} XP ({xpPercent}%)</span>
+              <span>PROGRESO DE COMPLETADO DE LA LISTA</span>
+              <span>{completionPercent}% de los ítems masterizados</span>
             </div>
             <div className="xp-bar-bg">
-              <div className="xp-bar-fill" style={{ width: `${xpPercent}%` }}></div>
+              <div className="xp-bar-fill" style={{ width: `${completionPercent}%` }}></div>
             </div>
           </div>
         </section>
@@ -251,7 +241,7 @@ export function App() {
 
         {/* CONTENIDO EN REJILLAS DEL JUEGO */}
         <div className="grid">
-          {/* INVENTARIO / CHECKLIST DE MAESTRÍA */}
+          {/* INVENTARIO / CHECKLIST DE COMPLETADO */}
           <section className="panel">
             <div className="panel-header">
               <h3 className="panel-title">
@@ -291,44 +281,44 @@ export function App() {
                             alt={item.name} 
                             className="item-thumbnail"
                             onError={(e) => {
-                              // Fallback si la imagen falla
-                              (e.target as HTMLImageElement).src = 'https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/excalibur.png';
+                              // Fallback si la imagen falla (reemplazamos por un ícono representativo genérico)
+                              (e.target as HTMLImageElement).src = 'https://cdn.warframestat.us/img/excalibur.png';
                             }}
                           />
                         )}
                         <span className="item-card-xp">
-                          {isMastered ? 'MAX RANGO' : `+${item.masteryPoints} XP`}
+                          {isMastered ? '✓ MAX' : 'PENDIENTE'}
                         </span>
-
-                        {/* HOVER STATS OVERLAY (Solo para Warframes con stats cargados) */}
-                        {item.category === 'WARFRAME' && item.components && (
-                          <div className="item-stats-overlay">
-                            <h4 style={{ color: 'var(--color-accent-gold)', marginBottom: '0.4rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.2rem', textTransform: 'uppercase', fontSize: '0.8rem', textAlign: 'center' }}>
-                              Estadísticas Base
-                            </h4>
-                            <div className="stat-row">
-                              <span className="stat-label">❤️ Salud</span>
-                              <span className="stat-val red">{item.components.health}</span>
-                            </div>
-                            <div className="stat-row">
-                              <span className="stat-label">🛡️ Escudo</span>
-                              <span className="stat-val cyan">{item.components.shield}</span>
-                            </div>
-                            <div className="stat-row">
-                              <span className="stat-label">⚙️ Armadura</span>
-                              <span className="stat-val">{item.components.armor}</span>
-                            </div>
-                            <div className="stat-row">
-                              <span className="stat-label">⚡ Energía</span>
-                              <span className="stat-val gold">{item.components.energy}</span>
-                            </div>
-                            <div className="stat-row">
-                              <span className="stat-label">🏃 Velocidad</span>
-                              <span className="stat-val cyan">{item.components.sprint}</span>
-                            </div>
-                          </div>
-                        )}
                       </div>
+
+                      {/* HOVER STATS OVERLAY (Solo para Warframes con stats cargados) */}
+                      {item.category === 'WARFRAME' && item.components && (
+                        <div className="item-stats-overlay">
+                          <h4 style={{ color: 'var(--color-accent-gold)', marginBottom: '0.4rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.2rem', textTransform: 'uppercase', fontSize: '0.8rem', textAlign: 'center' }}>
+                            Estadísticas Base
+                          </h4>
+                          <div className="stat-row">
+                            <span className="stat-label">❤️ Salud</span>
+                            <span className="stat-val red">{item.components.health}</span>
+                          </div>
+                          <div className="stat-row">
+                            <span className="stat-label">🛡️ Escudo</span>
+                            <span className="stat-val cyan">{item.components.shield}</span>
+                          </div>
+                          <div className="stat-row">
+                            <span className="stat-label">⚙️ Armadura</span>
+                            <span className="stat-val">{item.components.armor}</span>
+                          </div>
+                          <div className="stat-row">
+                            <span className="stat-label">⚡ Energía</span>
+                            <span className="stat-val gold">{item.components.energy}</span>
+                          </div>
+                          <div className="stat-row">
+                            <span className="stat-label">🏃 Velocidad</span>
+                            <span className="stat-val cyan">{item.components.sprint}</span>
+                          </div>
+                        </div>
+                      )}
 
                       {/* Barra de progreso inferior en cada carta */}
                       <div className="rank-indicator-bar">

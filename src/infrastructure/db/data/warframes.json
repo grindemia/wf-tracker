@@ -12,7 +12,7 @@
     "energy": 100,
     "sprint": 1.15,
     "wikiaUrl": "https://wiki.warframe.com/w/Ash",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/ash.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Ash.png"
   },
   {
     "id": "-lotus-powersuits-ninja-ashprime",
@@ -27,7 +27,7 @@
     "energy": 100,
     "sprint": 1.2,
     "wikiaUrl": "https://wiki.warframe.com/w/Ash%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/ash-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/AshPrime.png"
   },
   {
     "id": "-lotus-powersuits-brawler-brawler",
@@ -42,7 +42,7 @@
     "energy": 175,
     "sprint": 0.9,
     "wikiaUrl": "https://wiki.warframe.com/w/Atlas",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/atlas.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Atlas.png"
   },
   {
     "id": "-lotus-powersuits-brawler-atlasprime",
@@ -57,7 +57,7 @@
     "energy": 215,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Atlas%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/atlas-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/AtlasPrime.png"
   },
   {
     "id": "-lotus-powersuits-banshee-banshee",
@@ -72,7 +72,7 @@
     "energy": 175,
     "sprint": 1.1,
     "wikiaUrl": "https://wiki.warframe.com/w/Banshee",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/banshee.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Banshee.png"
   },
   {
     "id": "-lotus-powersuits-banshee-bansheeprime",
@@ -87,7 +87,7 @@
     "energy": 215,
     "sprint": 1.15,
     "wikiaUrl": "https://wiki.warframe.com/w/Banshee%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/banshee-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/BansheePrime.png"
   },
   {
     "id": "-lotus-powersuits-pacifist-pacifist",
@@ -102,7 +102,7 @@
     "energy": 200,
     "sprint": 1.2,
     "wikiaUrl": "https://wiki.warframe.com/w/Baruuk",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/baruuk.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Pacifist.png"
   },
   {
     "id": "-lotus-powersuits-pacifist-baruukprime",
@@ -117,7 +117,7 @@
     "energy": 200,
     "sprint": 1.2,
     "wikiaUrl": "https://wiki.warframe.com/w/Baruuk%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/baruuk-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/BaruukPrime.png"
   },
   {
     "id": "-lotus-powersuits-entratimech-thanotech",
@@ -132,7 +132,7 @@
     "energy": 175,
     "sprint": 1,
     "wikiaUrl": "https://warframe.fandom.com/wiki/Bonewidow",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/bonewidow.png"
+    "imageUrl": "https://cdn.warframestat.us/img/ThanoMech.png"
   },
   {
     "id": "-lotus-powersuits-sentient-sentient",
@@ -147,7 +147,7 @@
     "energy": 140,
     "sprint": 1.1,
     "wikiaUrl": "https://wiki.warframe.com/w/Caliban",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/caliban.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Caliban.png"
   },
   {
     "id": "-lotus-powersuits-sentient-calibanprime",
@@ -162,7 +162,7 @@
     "energy": 175,
     "sprint": 1.1,
     "wikiaUrl": "https://wiki.warframe.com/w/Caliban%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/caliban-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/CalibanPrime.png"
   },
   {
     "id": "-lotus-powersuits-dragon-dragon",
@@ -177,7 +177,7 @@
     "energy": 175,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Chroma",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/chroma.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Chroma.png"
   },
   {
     "id": "-lotus-powersuits-dragon-chromaprime",
@@ -192,7 +192,7 @@
     "energy": 200,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Chroma%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/chroma-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/ChromaPrime.png"
   },
   {
     "id": "-lotus-powersuits-geode-geode",
@@ -207,7 +207,7 @@
     "energy": 130,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Citrine",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/citrine.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Citrine.png"
   },
   {
     "id": "-lotus-powersuits-frumentarius-frumentarius",
@@ -222,7 +222,7 @@
     "energy": 180,
     "sprint": 1.1,
     "wikiaUrl": "https://wiki.warframe.com/w/Cyte-09",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/cyte-09.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Frumentarius.png"
   },
   {
     "id": "-lotus-powersuits-dagath-dagath",
@@ -237,7 +237,7 @@
     "energy": 175,
     "sprint": 1.1,
     "wikiaUrl": "https://wiki.warframe.com/w/Dagath",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/dagath.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Dagath.png"
   },
   {
     "id": "-lotus-powersuits-pagemaster-pagemaster",
@@ -252,7 +252,7 @@
     "energy": 200,
     "sprint": 1.15,
     "wikiaUrl": "https://wiki.warframe.com/w/Dante",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/dante.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Pagemaster.png"
   },
   {
     "id": "-lotus-powersuits-ember-ember",
@@ -267,7 +267,7 @@
     "energy": 175,
     "sprint": 1.1,
     "wikiaUrl": "https://wiki.warframe.com/w/Ember",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/ember.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Ember.png"
   },
   {
     "id": "-lotus-powersuits-ember-emberprime",
@@ -282,7 +282,7 @@
     "energy": 175,
     "sprint": 1.1,
     "wikiaUrl": "https://wiki.warframe.com/w/Ember%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/ember-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/EmberPrime.png"
   },
   {
     "id": "-lotus-powersuits-yinyang-yinyang",
@@ -297,7 +297,7 @@
     "energy": 175,
     "sprint": 1.15,
     "wikiaUrl": "https://wiki.warframe.com/w/Equinox",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/equinox.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Equinox.png"
   },
   {
     "id": "-lotus-powersuits-yinyang-equinoxprime",
@@ -312,7 +312,7 @@
     "energy": 200,
     "sprint": 1.15,
     "wikiaUrl": "https://wiki.warframe.com/w/Equinox%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/equinox-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/EquinoxPrime.png"
   },
   {
     "id": "-lotus-powersuits-excalibur-excalibur",
@@ -327,7 +327,7 @@
     "energy": 100,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Excalibur",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/excalibur.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Excalibur.png"
   },
   {
     "id": "-lotus-powersuits-excalibur-excaliburprime",
@@ -342,7 +342,7 @@
     "energy": 175,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Excalibur%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/excalibur-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/ExcaliburPrime.png"
   },
   {
     "id": "-lotus-powersuits-excalibur-excaliburumbra",
@@ -357,7 +357,7 @@
     "energy": 175,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Excalibur_Umbra",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/excalibur-umbra.png"
+    "imageUrl": "https://cdn.warframestat.us/img/ExcaliburUmbra.png"
   },
   {
     "id": "-lotus-powersuits-inkblot-inkblot",
@@ -372,7 +372,7 @@
     "energy": 175,
     "sprint": 0.95,
     "wikiaUrl": "https://wiki.warframe.com/w/Follie",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/follie.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Inkblot.png"
   },
   {
     "id": "-lotus-powersuits-frost-frost",
@@ -387,7 +387,7 @@
     "energy": 100,
     "sprint": 0.95,
     "wikiaUrl": "https://wiki.warframe.com/w/Frost",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/frost.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Frost.png"
   },
   {
     "id": "-lotus-powersuits-frost-frostprime",
@@ -402,7 +402,7 @@
     "energy": 100,
     "sprint": 0.95,
     "wikiaUrl": "https://wiki.warframe.com/w/Frost%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/frost-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/FrostPrime.png"
   },
   {
     "id": "-lotus-powersuits-glass-glass",
@@ -417,7 +417,7 @@
     "energy": 175,
     "sprint": 1.15,
     "wikiaUrl": "https://wiki.warframe.com/w/Gara",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/gara.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Gara.png"
   },
   {
     "id": "-lotus-powersuits-glass-garaprime",
@@ -432,7 +432,7 @@
     "energy": 175,
     "sprint": 1.15,
     "wikiaUrl": "https://wiki.warframe.com/w/Gara%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/gara-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/GaraPrime.png"
   },
   {
     "id": "-lotus-powersuits-garuda-garuda",
@@ -447,7 +447,7 @@
     "energy": 140,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Garuda",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/garuda.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Garuda.png"
   },
   {
     "id": "-lotus-powersuits-garuda-garudaprime",
@@ -462,7 +462,7 @@
     "energy": 220,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Garuda%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/garuda-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/GarudaPrime.png"
   },
   {
     "id": "-lotus-powersuits-runner-runner",
@@ -477,7 +477,7 @@
     "energy": 175,
     "sprint": 1.4,
     "wikiaUrl": "https://wiki.warframe.com/w/Gauss",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/gauss.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Gauss.png"
   },
   {
     "id": "-lotus-powersuits-runner-gaussprime",
@@ -492,7 +492,7 @@
     "energy": 175,
     "sprint": 1.5,
     "wikiaUrl": "https://wiki.warframe.com/w/Gauss%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/gauss-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/GaussPrime.png"
   },
   {
     "id": "-lotus-powersuits-devourer-devourer",
@@ -507,7 +507,7 @@
     "energy": 175,
     "sprint": 0.95,
     "wikiaUrl": "https://wiki.warframe.com/w/Grendel",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/grendel.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Grendel.png"
   },
   {
     "id": "-lotus-powersuits-devourer-grendelprime",
@@ -522,7 +522,7 @@
     "energy": 200,
     "sprint": 0.95,
     "wikiaUrl": "https://wiki.warframe.com/w/Grendel%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/grendel-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/GrendelPrime.png"
   },
   {
     "id": "-lotus-powersuits-gyre-gyre",
@@ -537,7 +537,7 @@
     "energy": 190,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Gyre",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/gyre.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Gyre.png"
   },
   {
     "id": "-lotus-powersuits-gyre-gyreprime",
@@ -552,7 +552,7 @@
     "energy": 190,
     "sprint": 1.05,
     "wikiaUrl": "https://wiki.warframe.com/w/Gyre%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/gyre-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/GyrePrime.png"
   },
   {
     "id": "-lotus-powersuits-priest-priest",
@@ -567,7 +567,7 @@
     "energy": 100,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Harrow",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/harrow.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Harrow.png"
   },
   {
     "id": "-lotus-powersuits-priest-harrowprime",
@@ -582,7 +582,7 @@
     "energy": 140,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Harrow%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/harrow-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/HarrowPrime.png"
   },
   {
     "id": "-lotus-powersuits-powersuitabilities-helminth",
@@ -597,7 +597,7 @@
     "energy": 100,
     "sprint": 1,
     "wikiaUrl": "https://warframe.fandom.com/wiki/Helminth",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/helminth.png"
+    "imageUrl": ""
   },
   {
     "id": "-lotus-powersuits-ironframe-ironframe",
@@ -612,7 +612,7 @@
     "energy": 100,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Hildryn",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/hildryn.png"
+    "imageUrl": "https://cdn.warframestat.us/img/IronFrame.png"
   },
   {
     "id": "-lotus-powersuits-ironframe-ironframeprime",
@@ -627,7 +627,7 @@
     "energy": 100,
     "sprint": 1.05,
     "wikiaUrl": "https://wiki.warframe.com/w/Hildryn%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/hildryn-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/HildrynPrime.png"
   },
   {
     "id": "-lotus-powersuits-pirate-pirate",
@@ -642,7 +642,7 @@
     "energy": 140,
     "sprint": 1.05,
     "wikiaUrl": "https://wiki.warframe.com/w/Hydroid",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/hydroid.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Hydroid.png"
   },
   {
     "id": "-lotus-powersuits-pirate-hydroidprime",
@@ -657,7 +657,7 @@
     "energy": 175,
     "sprint": 1.05,
     "wikiaUrl": "https://wiki.warframe.com/w/Hydroid%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/hydroid-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/HydroidPrime.png"
   },
   {
     "id": "-lotus-powersuits-sandman-sandman",
@@ -672,7 +672,7 @@
     "energy": 100,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Inaros",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/inaros.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Inaros.png"
   },
   {
     "id": "-lotus-powersuits-sandman-inarosprime",
@@ -687,7 +687,7 @@
     "energy": 140,
     "sprint": 1.05,
     "wikiaUrl": "https://wiki.warframe.com/w/Inaros%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/inaros-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/InarosPrime.png"
   },
   {
     "id": "-lotus-powersuits-ranger-ranger",
@@ -702,7 +702,7 @@
     "energy": 215,
     "sprint": 1.15,
     "wikiaUrl": "https://wiki.warframe.com/w/Ivara",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/ivara.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Ivara.png"
   },
   {
     "id": "-lotus-powersuits-ranger-ivaraprime",
@@ -717,7 +717,7 @@
     "energy": 250,
     "sprint": 1.2,
     "wikiaUrl": "https://wiki.warframe.com/w/Ivara%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/ivara-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/IvaraPrime.png"
   },
   {
     "id": "-lotus-powersuits-choir-choir",
@@ -732,7 +732,7 @@
     "energy": 150,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Jade",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/jade.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Jade.png"
   },
   {
     "id": "-lotus-powersuits-khora-khora",
@@ -747,7 +747,7 @@
     "energy": 140,
     "sprint": 1.05,
     "wikiaUrl": "https://wiki.warframe.com/w/Khora",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/khora.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Khora.png"
   },
   {
     "id": "-lotus-powersuits-khora-khoraprime",
@@ -762,7 +762,7 @@
     "energy": 175,
     "sprint": 1.05,
     "wikiaUrl": "https://wiki.warframe.com/w/Khora%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/khora-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/KhoraPrime.png"
   },
   {
     "id": "-lotus-powersuits-koumei-koumei",
@@ -777,7 +777,7 @@
     "energy": 122,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Koumei",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/koumei.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Koumei.png"
   },
   {
     "id": "-lotus-powersuits-paxduviricus-paxduviricus",
@@ -792,7 +792,7 @@
     "energy": 175,
     "sprint": 1.1,
     "wikiaUrl": "https://wiki.warframe.com/w/Kullervo",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/kullervo.png"
+    "imageUrl": "https://cdn.warframestat.us/img/PaxDuviricus.png"
   },
   {
     "id": "-lotus-powersuits-alchemist-alchemist",
@@ -807,7 +807,7 @@
     "energy": 100,
     "sprint": 1.15,
     "wikiaUrl": "https://wiki.warframe.com/w/Lavos",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/lavos.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Lavos.png"
   },
   {
     "id": "-lotus-powersuits-alchemist-lavosprime",
@@ -822,7 +822,7 @@
     "energy": 100,
     "sprint": 1.15,
     "wikiaUrl": "https://wiki.warframe.com/w/Lavos%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/lavos-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/LavosPrime.png"
   },
   {
     "id": "-lotus-powersuits-magician-magician",
@@ -837,7 +837,7 @@
     "energy": 175,
     "sprint": 1.15,
     "wikiaUrl": "https://wiki.warframe.com/w/Limbo",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/limbo.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Limbo.png"
   },
   {
     "id": "-lotus-powersuits-magician-limboprime",
@@ -852,7 +852,7 @@
     "energy": 215,
     "sprint": 1.15,
     "wikiaUrl": "https://wiki.warframe.com/w/Limbo%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/limbo-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/LimboPrime.png"
   },
   {
     "id": "-lotus-powersuits-loki-loki",
@@ -867,7 +867,7 @@
     "energy": 175,
     "sprint": 1.25,
     "wikiaUrl": "https://wiki.warframe.com/w/Loki",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/loki.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Loki.png"
   },
   {
     "id": "-lotus-powersuits-loki-lokiprime",
@@ -882,7 +882,7 @@
     "energy": 215,
     "sprint": 1.25,
     "wikiaUrl": "https://wiki.warframe.com/w/Loki%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/loki-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/LokiPrime.png"
   },
   {
     "id": "-lotus-powersuits-mag-mag",
@@ -897,7 +897,7 @@
     "energy": 140,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Mag",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/mag.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Mag.png"
   },
   {
     "id": "-lotus-powersuits-mag-magprime",
@@ -912,7 +912,7 @@
     "energy": 215,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Mag%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/mag-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/MagPrime.png"
   },
   {
     "id": "-lotus-powersuits-cowgirl-cowgirl",
@@ -927,7 +927,7 @@
     "energy": 100,
     "sprint": 1.1,
     "wikiaUrl": "https://wiki.warframe.com/w/Mesa",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/mesa.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Mesa.png"
   },
   {
     "id": "-lotus-powersuits-cowgirl-mesaprime",
@@ -942,7 +942,7 @@
     "energy": 140,
     "sprint": 1.1,
     "wikiaUrl": "https://wiki.warframe.com/w/Mesa%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/mesa-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/MesaPrime.png"
   },
   {
     "id": "-lotus-powersuits-harlequin-harlequin",
@@ -957,7 +957,7 @@
     "energy": 175,
     "sprint": 1.2,
     "wikiaUrl": "https://wiki.warframe.com/w/Mirage",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/mirage.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Mirage.png"
   },
   {
     "id": "-lotus-powersuits-harlequin-mirageprime",
@@ -972,7 +972,7 @@
     "energy": 175,
     "sprint": 1.2,
     "wikiaUrl": "https://wiki.warframe.com/w/Mirage%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/mirage-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/MiragePrime.png"
   },
   {
     "id": "-lotus-powersuits-necro-necro",
@@ -987,7 +987,7 @@
     "energy": 100,
     "sprint": 1.1,
     "wikiaUrl": "https://wiki.warframe.com/w/Nekros",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/nekros.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Nekros.png"
   },
   {
     "id": "-lotus-powersuits-necro-nekrosprime",
@@ -1002,7 +1002,7 @@
     "energy": 140,
     "sprint": 1.1,
     "wikiaUrl": "https://wiki.warframe.com/w/Nekros%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/nekros-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/NekrosPrime.png"
   },
   {
     "id": "-lotus-powersuits-nezha-nezha",
@@ -1017,7 +1017,7 @@
     "energy": 175,
     "sprint": 1.15,
     "wikiaUrl": "https://wiki.warframe.com/w/Nezha",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/nezha.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Nezha.png"
   },
   {
     "id": "-lotus-powersuits-nezha-nezhaprime",
@@ -1032,7 +1032,7 @@
     "energy": 175,
     "sprint": 1.2,
     "wikiaUrl": "https://wiki.warframe.com/w/Nezha%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/nezha-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/NezhaPrime.png"
   },
   {
     "id": "-lotus-powersuits-infestation-infestation",
@@ -1047,7 +1047,7 @@
     "energy": 100,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Nidus",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/nidus.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Nidus.png"
   },
   {
     "id": "-lotus-powersuits-infestation-infestationprime",
@@ -1062,7 +1062,7 @@
     "energy": 140,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Nidus%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/nidus-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/NidusPrime.png"
   },
   {
     "id": "-lotus-powersuits-nokko-nokko",
@@ -1077,7 +1077,7 @@
     "energy": 130,
     "sprint": 1.25,
     "wikiaUrl": "https://wiki.warframe.com/w/Nokko",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/nokko.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Nokko.png"
   },
   {
     "id": "-lotus-powersuits-antimatter-anti",
@@ -1092,7 +1092,7 @@
     "energy": 175,
     "sprint": 1.2,
     "wikiaUrl": "https://wiki.warframe.com/w/Nova",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/nova.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Nova.png"
   },
   {
     "id": "-lotus-powersuits-antimatter-novaprime",
@@ -1107,7 +1107,7 @@
     "energy": 215,
     "sprint": 1.2,
     "wikiaUrl": "https://wiki.warframe.com/w/Nova%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/nova-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/NovaPrime.png"
   },
   {
     "id": "-lotus-powersuits-jade-jade",
@@ -1122,7 +1122,7 @@
     "energy": 175,
     "sprint": 1.1,
     "wikiaUrl": "https://wiki.warframe.com/w/Nyx",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/nyx.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Nyx.png"
   },
   {
     "id": "-lotus-powersuits-jade-nyxprime",
@@ -1137,7 +1137,7 @@
     "energy": 175,
     "sprint": 1.125,
     "wikiaUrl": "https://wiki.warframe.com/w/Nyx%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/nyx-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/NyxPrime.png"
   },
   {
     "id": "-lotus-powersuits-paladin-paladin",
@@ -1152,7 +1152,7 @@
     "energy": 175,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Oberon",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/oberon.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Oberon.png"
   },
   {
     "id": "-lotus-powersuits-paladin-paladinprime",
@@ -1167,7 +1167,7 @@
     "energy": 215,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Oberon%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/oberon-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/OberonPrime.png"
   },
   {
     "id": "-lotus-powersuits-bard-bard",
@@ -1182,7 +1182,7 @@
     "energy": 175,
     "sprint": 1.05,
     "wikiaUrl": "https://wiki.warframe.com/w/Octavia",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/octavia.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Octavia.png"
   },
   {
     "id": "-lotus-powersuits-bard-octaviaprime",
@@ -1197,7 +1197,7 @@
     "energy": 215,
     "sprint": 1.05,
     "wikiaUrl": "https://wiki.warframe.com/w/Octavia%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/octavia-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/OctaviaPrime.png"
   },
   {
     "id": "-lotus-powersuits-oraxia-oraxia",
@@ -1212,7 +1212,7 @@
     "energy": 150,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Oraxia",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/oraxia.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Oraxia.png"
   },
   {
     "id": "-lotus-powersuits-siriusorion-orionsuit",
@@ -1227,7 +1227,7 @@
     "energy": 200,
     "sprint": 1.15,
     "wikiaUrl": "https://wiki.warframe.com/w/Orion",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/orion-&-sirius.png"
+    "imageUrl": "https://cdn.warframestat.us/img/OrionSirius.png"
   },
   {
     "id": "-lotus-powersuits-odalisk-odalisk",
@@ -1242,7 +1242,7 @@
     "energy": 175,
     "sprint": 1.2,
     "wikiaUrl": "https://wiki.warframe.com/w/Protea",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/protea.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Odalisk.png"
   },
   {
     "id": "-lotus-powersuits-odalisk-proteaprime",
@@ -1257,7 +1257,7 @@
     "energy": 200,
     "sprint": 1.2,
     "wikiaUrl": "https://wiki.warframe.com/w/Protea%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/protea-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/ProteaPrime.png"
   },
   {
     "id": "-lotus-powersuits-concreteframe-concreteframe",
@@ -1272,7 +1272,7 @@
     "energy": 150,
     "sprint": 0.9,
     "wikiaUrl": "https://wiki.warframe.com/w/Qorvex",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/qorvex.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Qorvex.png"
   },
   {
     "id": "-lotus-powersuits-revenant-revenant",
@@ -1287,7 +1287,7 @@
     "energy": 140,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Revenant",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/revenant.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Revenant.png"
   },
   {
     "id": "-lotus-powersuits-revenant-revenantprime",
@@ -1302,7 +1302,7 @@
     "energy": 175,
     "sprint": 1.1,
     "wikiaUrl": "https://wiki.warframe.com/w/Revenant%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/revenant-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/RevenantPrime.png"
   },
   {
     "id": "-lotus-powersuits-rhino-rhino",
@@ -1317,7 +1317,7 @@
     "energy": 100,
     "sprint": 0.95,
     "wikiaUrl": "https://wiki.warframe.com/w/Rhino",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/rhino.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Rhino.png"
   },
   {
     "id": "-lotus-powersuits-rhino-rhinoprime",
@@ -1332,7 +1332,7 @@
     "energy": 100,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Rhino%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/rhino-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/RhinoPrime.png"
   },
   {
     "id": "-lotus-powersuits-saryn-saryn",
@@ -1347,7 +1347,7 @@
     "energy": 175,
     "sprint": 0.95,
     "wikiaUrl": "https://wiki.warframe.com/w/Saryn",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/saryn.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Saryn.png"
   },
   {
     "id": "-lotus-powersuits-saryn-sarynprime",
@@ -1362,7 +1362,7 @@
     "energy": 200,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Saryn%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/saryn-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/SarynPrime.png"
   },
   {
     "id": "-lotus-powersuits-wraith-wraith",
@@ -1377,7 +1377,7 @@
     "energy": 140,
     "sprint": 0.95,
     "wikiaUrl": "https://wiki.warframe.com/w/Sevagoth",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/sevagoth.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Wraith.png"
   },
   {
     "id": "-lotus-powersuits-wraith-sevagothprime",
@@ -1392,7 +1392,7 @@
     "energy": 175,
     "sprint": 0.95,
     "wikiaUrl": "https://wiki.warframe.com/w/Sevagoth%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/sevagoth-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/SevagothPrime.png"
   },
   {
     "id": "-lotus-powersuits-siriusorion-siriussuit",
@@ -1407,7 +1407,7 @@
     "energy": 200,
     "sprint": 1.15,
     "wikiaUrl": "https://wiki.warframe.com/w/Sirius",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/sirius-&-orion.png"
+    "imageUrl": "https://cdn.warframestat.us/img/SiriusOrion.png"
   },
   {
     "id": "-lotus-powersuits-hoplite-hoplite",
@@ -1422,7 +1422,7 @@
     "energy": 175,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Styanax",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/styanax.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Styanax.png"
   },
   {
     "id": "-lotus-powersuits-hoplite-styanaxprime",
@@ -1437,7 +1437,7 @@
     "energy": 215,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Styanax%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/styanax-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/StyanaxPrime.png"
   },
   {
     "id": "-lotus-powersuits-temple-temple",
@@ -1452,7 +1452,7 @@
     "energy": 165,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Temple",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/temple.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Temple.png"
   },
   {
     "id": "-lotus-powersuits-fairy-fairy",
@@ -1467,7 +1467,7 @@
     "energy": 175,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Titania",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/titania.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Titania.png"
   },
   {
     "id": "-lotus-powersuits-fairy-titaniaprime",
@@ -1482,7 +1482,7 @@
     "energy": 215,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Titania%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/titania-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/TitaniaPrime.png"
   },
   {
     "id": "-lotus-powersuits-trinity-trinity",
@@ -1497,7 +1497,7 @@
     "energy": 175,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Trinity",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/trinity.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Trinity.png"
   },
   {
     "id": "-lotus-powersuits-trinity-trinityprime",
@@ -1512,7 +1512,7 @@
     "energy": 175,
     "sprint": 1.1,
     "wikiaUrl": "https://wiki.warframe.com/w/Trinity%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/trinity-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/TrinityPrime.png"
   },
   {
     "id": "-lotus-powersuits-demonframe-demonframe",
@@ -1527,7 +1527,7 @@
     "energy": 100,
     "sprint": 1.1,
     "wikiaUrl": "https://wiki.warframe.com/w/Uriel",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/uriel.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Demonframe.png"
   },
   {
     "id": "-lotus-powersuits-berserker-berserker",
@@ -1542,7 +1542,7 @@
     "energy": 100,
     "sprint": 1.1,
     "wikiaUrl": "https://wiki.warframe.com/w/Valkyr",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/valkyr.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Valkyr.png"
   },
   {
     "id": "-lotus-powersuits-berserker-valkyrprime",
@@ -1557,7 +1557,7 @@
     "energy": 175,
     "sprint": 1.1,
     "wikiaUrl": "https://wiki.warframe.com/w/Valkyr%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/valkyr-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/ValkyrPrime.png"
   },
   {
     "id": "-lotus-powersuits-trapper-trapper",
@@ -1572,7 +1572,7 @@
     "energy": 175,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Vauban",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/vauban.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Vauban.png"
   },
   {
     "id": "-lotus-powersuits-trapper-trapperprime",
@@ -1587,7 +1587,7 @@
     "energy": 175,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Vauban%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/vauban-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/VaubanPrime.png"
   },
   {
     "id": "-lotus-powersuits-entratimech-nechrotech",
@@ -1602,7 +1602,7 @@
     "energy": 175,
     "sprint": 1,
     "wikiaUrl": "https://warframe.fandom.com/wiki/Voidrig",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/voidrig.png"
+    "imageUrl": "https://cdn.warframestat.us/img/NechroMech.png"
   },
   {
     "id": "-lotus-powersuits-volt-volt",
@@ -1617,7 +1617,7 @@
     "energy": 100,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Volt",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/volt.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Volt.png"
   },
   {
     "id": "-lotus-powersuits-volt-voltprime",
@@ -1632,7 +1632,7 @@
     "energy": 200,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Volt%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/volt-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/VoltPrime.png"
   },
   {
     "id": "-lotus-powersuits-werewolf-werewolf",
@@ -1647,7 +1647,7 @@
     "energy": 100,
     "sprint": 0.95,
     "wikiaUrl": "https://wiki.warframe.com/w/Voruna",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/voruna.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Voruna.png"
   },
   {
     "id": "-lotus-powersuits-werewolf-vorunaprime",
@@ -1662,7 +1662,7 @@
     "energy": 130,
     "sprint": 1.2,
     "wikiaUrl": "https://wiki.warframe.com/w/Voruna%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/voruna-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/VorunaPrime.png"
   },
   {
     "id": "-lotus-powersuits-wisp-wisp",
@@ -1677,7 +1677,7 @@
     "energy": 200,
     "sprint": 1.2,
     "wikiaUrl": "https://wiki.warframe.com/w/Wisp",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/wisp.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Wisp.png"
   },
   {
     "id": "-lotus-powersuits-wisp-wispprime",
@@ -1692,7 +1692,7 @@
     "energy": 200,
     "sprint": 1.25,
     "wikiaUrl": "https://wiki.warframe.com/w/Wisp%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/wisp-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/WispPrime.png"
   },
   {
     "id": "-lotus-powersuits-monkeyking-monkeyking",
@@ -1707,7 +1707,7 @@
     "energy": 130,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Wukong",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/wukong.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Wukong.png"
   },
   {
     "id": "-lotus-powersuits-monkeyking-wukongprime",
@@ -1722,7 +1722,7 @@
     "energy": 145,
     "sprint": 1.05,
     "wikiaUrl": "https://wiki.warframe.com/w/Wukong%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/wukong-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/WukongPrime.png"
   },
   {
     "id": "-lotus-powersuits-brokenframe-brokenframe",
@@ -1737,7 +1737,7 @@
     "energy": 160,
     "sprint": 1.02,
     "wikiaUrl": "https://wiki.warframe.com/w/Xaku",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/xaku.png"
+    "imageUrl": "https://cdn.warframestat.us/img/BrokenFrame.png"
   },
   {
     "id": "-lotus-powersuits-brokenframe-xakuprime",
@@ -1752,7 +1752,7 @@
     "energy": 181,
     "sprint": 1.07,
     "wikiaUrl": "https://wiki.warframe.com/w/Xaku%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/xaku-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/XakuPrime.png"
   },
   {
     "id": "-lotus-powersuits-yareli-yareli",
@@ -1767,7 +1767,7 @@
     "energy": 200,
     "sprint": 1,
     "wikiaUrl": "https://wiki.warframe.com/w/Yareli",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/yareli.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Yareli.png"
   },
   {
     "id": "-lotus-powersuits-yareli-yareliprime",
@@ -1782,7 +1782,7 @@
     "energy": 215,
     "sprint": 1.1,
     "wikiaUrl": "https://wiki.warframe.com/w/Yareli%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/yareli-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/YareliPrime.png"
   },
   {
     "id": "-lotus-powersuits-tengu-tengu",
@@ -1797,7 +1797,7 @@
     "energy": 100,
     "sprint": 1.1,
     "wikiaUrl": "https://wiki.warframe.com/w/Zephyr",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/zephyr.png"
+    "imageUrl": "https://cdn.warframestat.us/img/Zephyr.png"
   },
   {
     "id": "-lotus-powersuits-tengu-zephyrprime",
@@ -1812,6 +1812,6 @@
     "energy": 175,
     "sprint": 1.15,
     "wikiaUrl": "https://wiki.warframe.com/w/Zephyr%2FPrime",
-    "imageUrl": "https://raw.githubusercontent.com/wfcd/warframe-items/master/data/img/zephyr-prime.png"
+    "imageUrl": "https://cdn.warframestat.us/img/ZephyrPrime.png"
   }
 ]
