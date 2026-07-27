@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "outDir": "./dist/server"
+  },
+  "include": [
+    "src/domain/**/*",
+    "src/application/**/*",
+    "src/infrastructure/**/*"
+  ],
+  "exclude": [
+    "src/presentation/**/*",
+    "src/infrastructure/api/**/*"
+  ]
+}
