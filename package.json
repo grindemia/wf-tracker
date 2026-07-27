@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "prisma:generate": "prisma generate",
     "server": "ts-node -O '{\"module\": \"commonjs\"}' src/infrastructure/server/index.ts",
-    "start": "NODE_ENV=production node dist/server/src/infrastructure/server/index.js"
+    "start": "NODE_ENV=production node dist/server/src/infrastructure/server/index.js",
+    "db:migrate": "prisma migrate deploy && prisma db seed"
   },
   "keywords": [
     "warframe",
@@ -46,5 +47,8 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
     "vite": "^5.1.4"
+  },
+  "prisma": {
+    "seed": "node dist/server/src/infrastructure/db/prisma/seed.js"
   }
 }
