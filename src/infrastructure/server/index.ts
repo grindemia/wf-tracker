@@ -307,6 +307,46 @@ app.delete('/api/farming', authMiddleware, async (req: AuthenticatedRequest, res
   }
 });
 
+app.get('/api/relic-farming/vaulted', async (req, res) => {
+  try {
+    const primeItems = await prisma.item.findMany({
+      where: {
+        name: {
+          contains: 'Prime',
+          mode: 'insensitive'
+        }
+      },
+      select: { id: true }
+    });
+
+    const activeItems = await prisma.item.findMany({
+      where: {
+        itemComponents: {
+          some: {
+            drops: {
+              some: {
+                relic: {
+                  vaulted: false
+                }
+              }
+            }
+          }
+        }
+      },
+      select: { id: true }
+    });
+
+    const activeSet = new Set(activeItems.map(i => i.id));
+    const vaultedIds = primeItems
+      .map(i => i.id)
+      .filter(id => !activeSet.has(id));
+
+    res.json(vaultedIds);
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Relic Farming
 app.get('/api/relic-farming/components', async (req, res) => {
   try {

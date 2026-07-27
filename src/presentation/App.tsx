@@ -213,26 +213,10 @@ export function App() {
     const allProg = await progressRepo.findByUser(CURRENT_USER_ID);
     const allFarm = await farmingRepo.findByUser(CURRENT_USER_ID);
 
-    // Calcular items que están en el Vault
-    const vaultedIds = new Set<string>();
-    for (const item of allItems) {
-      if (item.name.toLowerCase().includes('prime')) {
-        const components = await relicFarmingRepo.findComponentsByItemId(item.id);
-        if (components.length > 0) {
-          let hasActiveRelic = false;
-          for (const comp of components) {
-            const drops = await relicFarmingRepo.findDropsByComponentId(comp.id);
-            if (drops.some(d => !d.relic.vaulted)) {
-              hasActiveRelic = true;
-              break;
-            }
-          }
-          if (!hasActiveRelic) {
-            vaultedIds.add(item.id);
-          }
-        }
-      }
-    }
+    // Calcular items que están en el Vault mediante llamada eficiente al backend
+    const response = await fetch('/api/relic-farming/vaulted');
+    const vaultedArray = await response.json();
+    const vaultedIds = new Set<string>(vaultedArray);
     setVaultedItemIds(vaultedIds);
 
     setItems(allItems);
