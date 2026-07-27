@@ -17,6 +17,7 @@ export class PrismaItemRepository implements ItemRepository {
   }
 
   public async save(item: Item): Promise<Item> {
+    const componentsStr = item.components ? JSON.stringify(item.components) : null;
     const rawItem = await this.prisma.item.upsert({
       where: { id: item.id },
       update: {
@@ -27,7 +28,7 @@ export class PrismaItemRepository implements ItemRepository {
         maxRank: item.maxRank,
         wikiaUrl: item.wikiaUrl || null,
         imageUrl: item.imageUrl || null,
-        components: item.components || null,
+        components: componentsStr,
       },
       create: {
         id: item.id,
@@ -38,7 +39,7 @@ export class PrismaItemRepository implements ItemRepository {
         maxRank: item.maxRank,
         wikiaUrl: item.wikiaUrl || null,
         imageUrl: item.imageUrl || null,
-        components: item.components || null,
+        components: componentsStr,
       },
     });
     return this.mapToDomain(rawItem);
@@ -57,6 +58,14 @@ export class PrismaItemRepository implements ItemRepository {
   }
 
   private mapToDomain(raw: any): Item {
+    let parsedComponents: any = undefined;
+    if (raw.components) {
+      try {
+        parsedComponents = JSON.parse(raw.components);
+      } catch (e) {
+        parsedComponents = raw.components;
+      }
+    }
     return new Item({
       id: raw.id,
       name: raw.name,
@@ -66,7 +75,7 @@ export class PrismaItemRepository implements ItemRepository {
       maxRank: raw.maxRank,
       wikiaUrl: raw.wikiaUrl || undefined,
       imageUrl: raw.imageUrl || undefined,
-      components: raw.components || undefined,
+      components: parsedComponents,
     });
   }
 }

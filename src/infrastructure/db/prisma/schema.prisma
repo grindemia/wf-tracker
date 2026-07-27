@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -10,33 +10,12 @@ generator client {
   provider = "prisma-client-js"
 }
 
-enum Role {
-  USER
-  ADMIN
-}
-
-enum ProgressStatus {
-  PENDING      // Pendiente
-  LEVELING     // Subiendo de nivel
-  MASTERED     // Masterizado (Rango 30 o 40)
-}
-
-enum ItemCategory {
-  WARFRAME
-  PRIMARY_WEAPON
-  SECONDARY_WEAPON
-  MELEE_WEAPON
-  COMPANION
-  VEHICLE // Archwing, Necramech, K-Drive
-  OTHER
-}
-
 model User {
   id           String        @id @default(uuid())
   username     String        @unique
   email        String        @unique
   passwordHash String
-  role         Role          @default(USER)
+  role         String        @default("USER")
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
   
@@ -50,15 +29,16 @@ model Item {
   id            String        @id // ID único proveído por la API de Warframe (e.g., "/Lotus/Types/Warframes/Excalibur")
   name          String
   uniqueName    String        @unique
-  category      ItemCategory
+  category      String
   masteryPoints Int           // 6000 para Warframes/Compañeros, 3000 para armas
   maxRank       Int           @default(30) // 30 por defecto, 40 para Kuva/Tenet/Paracesis
   wikiaUrl      String?
   imageUrl      String?
-  components    Json?         // Detalle de componentes necesarios para fabricarlo (Blueprint components)
+  components    String?         // Detalle de componentes necesarios para fabricarlo (Blueprint components)
   
   progress      UserProgress[]
   farmingItems  FarmingItem[]
+  itemComponents ItemComponent[]
 
   @@map("items")
 }
@@ -67,7 +47,7 @@ model UserProgress {
   id          String         @id @default(uuid())
   userId      String
   itemId      String
-  status      ProgressStatus @default(PENDING)
+  status      String         @default("PENDING")
   currentRank Int            @default(0)
   updatedAt   DateTime       @updatedAt
 
@@ -95,3 +75,41 @@ model FarmingItem {
   @@index([userId])
   @@map("farming_items")
 }
+
+model ItemComponent {
+  id         String   @id @default(uuid())
+  itemId     String
+  name       String
+  uniqueName String
+
+  item       Item     @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  drops      RelicDropTable[]
+
+  @@map("item_components")
+}
+
+model Relic {
+  id       String   @id @default(uuid())
+  era      String   // Lith, Meso, Neo, Axi, Requiem
+  name     String   // S14, etc.
+  vaulted  Boolean  @default(false)
+
+  drops    RelicDropTable[]
+
+  @@map("relics")
+}
+
+model RelicDropTable {
+  id          String   @id @default(uuid())
+  componentId String
+  relicId     String
+  rarity      String   // BRONZE, SILVER, GOLD
+  chance      Float?   // e.g. 0.02, 0.11, 0.2533
+
+  component   ItemComponent @relation(fields: [componentId], references: [id], onDelete: Cascade)
+  relic       Relic         @relation(fields: [relicId], references: [id], onDelete: Cascade)
+
+  @@unique([componentId, relicId])
+  @@map("relic_drop_tables")
+}
+

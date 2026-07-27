@@ -319,7 +319,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 200px;
+  height: auto;
+  min-height: 245px;
   position: relative;
   transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
   overflow: hidden;
@@ -347,12 +348,50 @@ body {
   background: rgba(18, 30, 48, 0.8);
 }
 
-.item-card.mastered {
-  border-color: var(--color-accent-gold);
-  background: linear-gradient(180deg, var(--color-card-bg) 0%, rgba(195,160,91,0.04) 100%);
+.item-card.normal-item {
+  border-color: rgba(205, 127, 50, 0.2);
 }
 
-.item-card.mastered::before {
+.item-card.normal-item:hover {
+  border-color: #cd7f32;
+  box-shadow: 0 0 12px rgba(205, 127, 50, 0.4);
+  background: rgba(30, 20, 12, 0.75);
+}
+
+.item-card.normal-item::before {
+  border-color: transparent rgba(205, 127, 50, 0.4) transparent transparent;
+}
+
+.item-card.prime-item {
+  border-color: rgba(195, 160, 91, 0.25);
+  background: linear-gradient(180deg, var(--color-card-bg) 0%, rgba(195, 160, 91, 0.02) 100%);
+}
+
+.item-card.prime-item:hover {
+  border-color: var(--color-accent-gold);
+  box-shadow: 0 0 15px rgba(195, 160, 91, 0.5);
+  background: rgba(24, 20, 12, 0.85);
+}
+
+.item-card.prime-item::before {
+  border-color: transparent var(--color-accent-gold) transparent transparent;
+}
+
+.item-card.mastered.normal-item {
+  border-color: #cd7f32;
+  background: linear-gradient(180deg, var(--color-card-bg) 0%, rgba(205, 127, 50, 0.05) 100%);
+}
+
+.item-card.mastered.normal-item::before {
+  border-color: transparent #cd7f32 transparent transparent;
+}
+
+.item-card.mastered.prime-item {
+  border-color: var(--color-accent-gold);
+  background: linear-gradient(180deg, var(--color-card-bg) 0%, rgba(195, 160, 91, 0.08) 100%);
+}
+
+.item-card.mastered.prime-item::before {
   border-color: transparent var(--color-accent-gold) transparent transparent;
 }
 
@@ -423,6 +462,8 @@ body {
   padding: 0.4rem;
   display: flex;
   gap: 0.25rem;
+  position: relative;
+  z-index: 10;
 }
 
 /* Inventory card status indicators */
@@ -697,7 +738,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 40px);
   background: rgba(4, 7, 12, 0.95);
   backdrop-filter: blur(8px);
   display: flex;
@@ -710,6 +751,7 @@ body {
   font-size: 0.75rem;
   border-bottom: 2px solid var(--color-accent-cyan);
   z-index: 5;
+  overflow: hidden;
 }
 
 .item-card:hover .item-stats-overlay {
@@ -755,4 +797,878 @@ body {
 .stat-val.red {
   color: #ff3333;
 }
+
+/* 🌌 RELIC FARMING FINDER STYLES */
+.relic-finder-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 229, 255, 0.08);
+}
+
+.control-label {
+  color: var(--color-text-secondary);
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--color-text-secondary);
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  cursor: pointer;
+  letter-spacing: 1px;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.checkbox-label:hover {
+  color: var(--color-accent-gold);
+}
+
+.relic-checkbox {
+  accent-color: var(--color-accent-gold);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.checkbox-text {
+  position: relative;
+  top: 1px;
+}
+
+.farming-path-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.farming-path-title {
+  font-family: var(--font-title);
+  color: var(--color-text-primary);
+  font-size: 1.1rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  border-left: 3px solid var(--color-accent-cyan);
+  padding-left: 0.75rem;
+}
+
+.farming-path-title span {
+  color: var(--color-accent-cyan);
+}
+
+.relic-components-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.relic-comp-card {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 250px;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.relic-comp-card:hover {
+  border-color: var(--color-accent-cyan);
+  box-shadow: 0 8px 25px rgba(0, 229, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.relic-comp-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25px;
+  height: 25px;
+  background: linear-gradient(135deg, transparent 50%, rgba(0, 229, 255, 0.15) 50%);
+  pointer-events: none;
+}
+
+.relic-comp-card-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.85rem;
+}
+
+.relic-comp-name {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.relic-comp-card-body {
+  flex-grow: 1;
+}
+
+.relic-rows-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.relic-row-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 0.45rem 0.75rem;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  transition: background 0.2s ease;
+}
+
+.relic-row-item:hover {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.relic-row-item.rarity-gold {
+  border-left: 3px solid var(--color-accent-gold);
+}
+
+.relic-row-item.rarity-gold .relic-rarity-badge {
+  color: var(--color-accent-gold);
+}
+
+.relic-row-item.rarity-silver {
+  border-left: 3px solid #b0c4de;
+}
+
+.relic-row-item.rarity-silver .relic-rarity-badge {
+  color: #b0c4de;
+}
+
+.relic-row-item.rarity-bronze {
+  border-left: 3px solid #cd7f32;
+}
+
+.relic-row-item.rarity-bronze .relic-rarity-badge {
+  color: #cd7f32;
+}
+
+.relic-row-item.vaulted {
+  opacity: 0.65;
+}
+
+.relic-row-item.vaulted:hover {
+  opacity: 0.95;
+}
+
+.relic-meta-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.relic-name-tag {
+  font-family: var(--font-title);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.relic-status-sub {
+  font-size: 0.68rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+}
+
+.relic-meta-right {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.relic-rarity-badge {
+  font-family: var(--font-title);
+  font-weight: 900;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.relic-chance-percent {
+  font-size: 0.75rem;
+  color: var(--color-accent-cyan);
+}
+
+.relic-comp-card-footer {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.no-relics-text {
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  font-style: italic;
+  text-align: center;
+  padding: 1rem 0;
+  border: 1px dashed rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+/* Modal Overlay and Popups */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(4, 8, 15, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.modal-content {
+  background: #0d131f;
+  border: 1px solid var(--color-accent-gold);
+  box-shadow: 0 10px 40px rgba(195, 160, 91, 0.25);
+  width: 90%;
+  max-width: 960px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  animation: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: rgba(19, 27, 43, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.modal-title {
+  font-family: var(--font-title);
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0;
+}
+
+.modal-title .gold-text {
+  color: var(--color-accent-gold);
+  text-shadow: 0 0 10px rgba(195, 160, 91, 0.35);
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  line-height: 1;
+}
+
+.modal-close-btn:hover {
+  color: var(--color-accent-gold);
+}
+
+.modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-filters {
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Clickable card indicators */
+.item-card.clickable {
+  cursor: pointer;
+}
+
+.prime-badge {
+  font-family: var(--font-title);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: rgba(195, 160, 91, 0.1);
+  color: var(--color-accent-gold);
+  border: 1px solid rgba(195, 160, 91, 0.3);
+  padding: 0.1rem 0.4rem;
+  letter-spacing: 0.5px;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+.item-card.clickable:hover .prime-badge {
+  background: var(--color-accent-gold);
+  color: #000;
+  box-shadow: 0 0 8px rgba(195, 160, 91, 0.4);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Horizontal Relic Tags List */
+.relic-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+
+.relic-tag {
+  font-family: var(--font-title);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.45rem;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--color-text-secondary);
+  transition: all 0.2s ease;
+}
+
+.relic-tag.rarity-gold {
+  color: var(--color-accent-gold);
+  border-color: rgba(195, 160, 91, 0.35);
+  background: rgba(195, 160, 91, 0.05);
+}
+
+.relic-tag.rarity-silver {
+  color: #c0c0c0; /* silver */
+  border-color: rgba(192, 192, 192, 0.3);
+  background: rgba(192, 192, 192, 0.05);
+}
+
+.relic-tag.rarity-bronze {
+  color: #cd7f32; /* bronze/copper */
+  border-color: rgba(205, 127, 50, 0.3);
+  background: rgba(205, 127, 50, 0.05);
+}
+
+.relic-tag.vaulted {
+  opacity: 0.5;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.relic-tag:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Responsive Component Grid Media Queries */
+@media (max-width: 1100px) {
+  .relic-components-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .relic-components-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Card Overlays with CTAs */
+.overlay-click-banner {
+  margin-top: auto;
+  background: rgba(195, 160, 91, 0.15);
+  border: 1px solid var(--color-accent-gold);
+  color: var(--color-accent-gold);
+  font-weight: 700;
+  font-size: 0.65rem;
+  letter-spacing: 0.5px;
+  text-align: center;
+  padding: 0.2rem 0.4rem;
+  border-radius: 2px;
+  box-shadow: 0 0 6px rgba(195, 160, 91, 0.25);
+  animation: pulseGold 2s infinite ease-in-out;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.prime-click-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 40px);
+  background: rgba(4, 7, 12, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 5;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.item-card:hover .prime-click-overlay {
+  opacity: 1;
+}
+
+.prime-click-overlay span {
+  font-family: var(--font-title);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--color-accent-gold);
+  border: 1px solid var(--color-accent-gold);
+  background: rgba(195, 160, 91, 0.1);
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(195, 160, 91, 0.2);
+  animation: pulseGold 2s infinite ease-in-out;
+  white-space: nowrap;
+}
+
+@keyframes pulseGold {
+  0% { transform: scale(1); box-shadow: 0 0 8px rgba(195, 160, 91, 0.25); }
+  50% { transform: scale(1.02); box-shadow: 0 0 12px rgba(195, 160, 91, 0.4); }
+  100% { transform: scale(1); box-shadow: 0 0 8px rgba(195, 160, 91, 0.25); }
+}
+
+/* Inventory filters Row */
+.inventory-filters-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 0.75rem;
+}
+
+.inventory-filters-row .tabs {
+  margin-bottom: 0;
+}
+
+.mastery-filters {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.2rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mastery-filters .filter-label {
+  font-family: var(--font-title);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.filters-group-container {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.mastery-filters .filter-btn {
+  font-family: var(--font-title);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: transparent;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 2px;
+}
+
+.mastery-filters .filter-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.mastery-filters .filter-btn.active {
+  background: var(--color-accent-cyan);
+  color: #000;
+}
+
+.mastery-filters .filter-btn.active.gold {
+  background: var(--color-accent-gold);
+  color: #000;
+}
+
+.mastery-filters .filter-btn.active.orange {
+  background: var(--color-accent-orange);
+  color: #000;
+}
+
+/* Coming Soon Placeholder */
+.coming-soon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4.5rem 2rem;
+  background: rgba(13, 19, 31, 0.35);
+  border: 1px dashed rgba(0, 229, 255, 0.15);
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.coming-soon-content {
+  max-width: 550px;
+}
+
+.coming-soon-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 1rem;
+  animation: pulseGold 2s infinite ease-in-out;
+}
+
+.coming-soon-title {
+  font-family: var(--font-title);
+  font-size: 1.35rem;
+  letter-spacing: 1.5px;
+  color: var(--color-accent-gold);
+  margin-bottom: 0.75rem;
+}
+
+.coming-soon-subtitle {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.coming-soon-subtitle .highlight-tag {
+  color: var(--color-accent-cyan);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.coming-soon-loader {
+  height: 4px;
+  width: 100%;
+  max-width: 200px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.coming-soon-loader-bar {
+  height: 100%;
+  width: 50%;
+  background: var(--color-accent-cyan);
+  border-radius: 2px;
+  animation: loadingSlide 1.5s infinite ease-in-out;
+}
+
+@keyframes loadingSlide {
+  0% { transform: translateX(-150%); }
+  50% { transform: translateX(150%); }
+  100% { transform: translateX(-150%); }
+}
+
+/* Detailed Modal Ficha Técnica layout */
+.modal-item-info {
+  display: flex;
+  gap: 1.5rem;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .modal-item-info {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.modal-item-left {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(13, 19, 31, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  padding: 1rem;
+  width: 140px;
+  height: 140px;
+}
+
+.modal-item-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.2));
+}
+
+.modal-item-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.75rem;
+}
+
+.info-cell {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+  padding: 0.4rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-cell-label {
+  font-family: var(--font-title);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.5px;
+  margin-bottom: 0.15rem;
+}
+
+.info-cell-val {
+  font-family: var(--font-title);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.info-cell-val.highlight-cyan {
+  color: var(--color-accent-cyan);
+}
+
+.info-cell-val.highlight-gold {
+  color: var(--color-accent-gold);
+}
+
+.info-cell-link {
+  font-family: var(--font-title);
+  font-size: 0.78rem;
+  color: var(--color-accent-cyan);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.info-cell-link:hover {
+  color: var(--color-accent-gold);
+}
+
+/* Stats inside Modal */
+.modal-stats-container {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 0.75rem;
+}
+
+.modal-section-subtitle {
+  font-family: var(--font-title);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-accent-cyan);
+  margin: 0 0 0.5rem 0;
+}
+
+.modal-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .modal-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.modal-stat-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+  padding: 0.35rem 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.stat-card-icon {
+  font-size: 0.85rem;
+}
+
+.stat-card-name {
+  font-family: var(--font-title);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.stat-card-val {
+  margin-left: auto;
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.stat-card-wide {
+  grid-column: span 4;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+  padding: 0.35rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .stat-card-wide {
+    grid-column: span 2;
+  }
+}
+
+/* Farming Title Divider */
+.modal-section-title-divider {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  color: var(--color-accent-gold);
+  margin: 1.5rem 0 1rem 0;
+  text-transform: uppercase;
+}
+
+.modal-section-title-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(195, 160, 91, 0.5) 0%, transparent 100%);
+  margin-left: 1rem;
+}
+
+/* Standard Obtention styling */
+.standard-obtention-card {
+  background: rgba(0, 0, 0, 0.20);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+  padding: 1.5rem;
+  text-align: center;
+  font-family: var(--font-text);
+  color: var(--color-text-secondary);
+}
+
+.standard-obtention-text {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Empty Checklist State */
+.empty-checklist-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px dashed rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.empty-checklist-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.75rem;
+  animation: pulseGold 2s infinite ease-in-out;
+}
+
+.empty-checklist-title {
+  font-family: var(--font-title);
+  font-size: 0.9rem;
+  color: var(--color-accent-gold);
+  letter-spacing: 1.5px;
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+}
+
+.empty-checklist-subtitle {
+  font-family: var(--font-text);
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  max-width: 400px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+
+
+
+
 
