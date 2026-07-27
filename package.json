@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "clean": "rm -rf dist",
-    "build": "npm run clean && tsc -p tsconfig.server.json && vite build",
+    "build": "npm run clean && prisma generate --schema=src/infrastructure/db/prisma/schema.prisma && tsc -p tsconfig.server.json && vite build",
     "preview": "vite preview",
     "prisma:generate": "prisma generate",
     "server": "ts-node -O '{\"module\": \"commonjs\"}' src/infrastructure/server/index.ts",
