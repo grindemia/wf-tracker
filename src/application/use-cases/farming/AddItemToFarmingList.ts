@@ -30,18 +30,30 @@ export class AddItemToFarmingList {
     }
 
     // 2. Verificar si ya está en la lista de farmeo activa del usuario
-    const existingFarmingItem = await this.farmingRepository.findByUserAndItem(input.userId, input.itemId);
-    if (existingFarmingItem) {
-      throw new Error(`El ítem ya se encuentra en tu lista de farmeo activa.`);
-    }
+    let farmingItem = await this.farmingRepository.findByUserAndItem(input.userId, input.itemId);
 
-    // 3. Crear nueva instancia de entidad de dominio
-    const farmingItem = new FarmingItem({
-      userId: input.userId,
-      itemId: input.itemId,
-      notes: input.notes,
-      addedAt: new Date()
-    });
+    if (farmingItem) {
+      // Si ya existe, concatenamos las nuevas notas si no están incluidas
+      const currentNotes = farmingItem.notes || '';
+      const newNotes = input.notes || '';
+      if (newNotes && !currentNotes.includes(newNotes)) {
+        farmingItem = new FarmingItem({
+          id: farmingItem.id,
+          userId: farmingItem.userId,
+          itemId: farmingItem.itemId,
+          notes: currentNotes ? `${currentNotes} | ${newNotes}` : newNotes,
+          addedAt: farmingItem.addedAt
+        });
+      }
+    } else {
+      // 3. Crear nueva instancia de entidad de dominio si no existe
+      farmingItem = new FarmingItem({
+        userId: input.userId,
+        itemId: input.itemId,
+        notes: input.notes,
+        addedAt: new Date()
+      });
+    }
 
     // 4. Persistir la entidad a través del repositorio
     const savedItem = await this.farmingRepository.save(farmingItem);

@@ -33,6 +33,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Desactivar caché en el navegador para peticiones API
+app.use('/api', (req, res, next) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+  next();
+});
+
 const prisma = new PrismaClient();
 
 const itemRepo = new PrismaItemRepository(prisma);

@@ -62,9 +62,7 @@ const INITIAL_WEAPONS_AND_COMPANIONS = [
   new Item({ id: 'cp-diriga', name: 'Diriga', uniqueName: 'diriga', category: 'COMPANION', masteryPoints: 6000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Diriga', imageUrl: 'https://cdn.warframestat.us/img/Diriga.png' }),
 ];
 
-// Guardar todo el catálogo sincronizado en el repositorio en memoria
-PARSED_WARFRAMES.forEach(w => itemRepo.save(w));
-INITIAL_WEAPONS_AND_COMPANIONS.forEach(w => itemRepo.save(w));
+
 
 // Seeding para el Buscador de Farmeo de Reliquias
 let hasSeeded = false;
@@ -179,7 +177,7 @@ export function App() {
   const [farmingList, setFarmingList] = useState<FarmingItem[]>([]);
 
   // Estados de formularios y filtros
-  const [activeTab, setActiveTab] = useState<ItemCategory | 'ALL'>('ALL');
+  const [activeTab, setActiveTab] = useState<ItemCategory | 'ALL' | 'FARMING'>('ALL');
   const [masteryFilter, setMasteryFilter] = useState<'ALL' | 'PENDING' | 'MASTERED'>('ALL');
   const [vaultFilter, setVaultFilter] = useState<'ALL' | 'ACTIVE' | 'VAULTED'>('ALL');
   const [selectedFarmItem, setSelectedFarmItem] = useState('');
@@ -263,7 +261,9 @@ export function App() {
   // Filtrar ítems de la checklist
   const filteredItems = useMemo(() => {
     let result = items;
-    if (activeTab !== 'ALL') {
+    if (activeTab === 'FARMING') {
+      result = result.filter(i => isItemBeingFarmed(i.id));
+    } else if (activeTab !== 'ALL') {
       result = result.filter(i => i.category === activeTab);
     }
     // Filtro de Maestría
@@ -280,7 +280,7 @@ export function App() {
       result = result.filter(i => vaultedItemIds.has(i.id));
     }
     return result;
-  }, [items, activeTab, masteryFilter, vaultFilter, progressList, vaultedItemIds]);
+  }, [items, activeTab, masteryFilter, vaultFilter, progressList, vaultedItemIds, farmingList]);
 
   // Manejo de Caso de Uso: Marcar como Masterizado
   const handleMarkAsMastered = async (itemId: string) => {
@@ -660,13 +660,13 @@ export function App() {
             <div className="panel-body">
               <div className="inventory-filters-row">
                 <div className="tabs">
-                  {(['ALL', 'WARFRAME', 'PRIMARY_WEAPON', 'SECONDARY_WEAPON', 'MELEE_WEAPON', 'COMPANION'] as const).map(tab => (
+                  {(['ALL', 'WARFRAME', 'PRIMARY_WEAPON', 'SECONDARY_WEAPON', 'MELEE_WEAPON', 'COMPANION', 'FARMING'] as const).map(tab => (
                     <button
                       key={tab}
                       onClick={() => setActiveTab(tab)}
                       className={`tab-btn ${activeTab === tab ? 'active' : ''}`}
                     >
-                      {tab === 'ALL' ? 'Todos' : tab.replace('_', ' ')}
+                      {tab === 'ALL' ? 'Todos' : tab === 'FARMING' ? '🎯 Planificador' : tab.replace('_', ' ')}
                     </button>
                   ))}
                 </div>
@@ -719,7 +719,7 @@ export function App() {
               </div>
 
               {/* REJILLA DE TARJETAS DE INVENTARIO */}
-              {activeTab !== 'ALL' && activeTab !== 'WARFRAME' ? (
+              {activeTab !== 'ALL' && activeTab !== 'WARFRAME' && activeTab !== 'FARMING' ? (
                 <div className="coming-soon-container">
                   <div className="coming-soon-content">
                     <span className="coming-soon-icon">📡</span>
@@ -734,10 +734,15 @@ export function App() {
                 </div>
               ) : filteredItems.length === 0 ? (
                 <div className="empty-checklist-container">
-                  <span className="empty-checklist-icon">🛸</span>
-                  <h4 className="empty-checklist-title">SIN ARCHIVOS DETECTADOS</h4>
+                  <span className="empty-checklist-icon">{activeTab === 'FARMING' ? '🎯' : '🛸'}</span>
+                  <h4 className="empty-checklist-title">
+                    {activeTab === 'FARMING' ? 'TU PLANIFICADOR ESTÁ VACÍO' : 'SIN ARCHIVOS DETECTADOS'}
+                  </h4>
                   <p className="empty-checklist-subtitle">
-                    No se encontraron ítems que coincidan con la combinación seleccionada de filtros de Maestría y Estado de Vault.
+                    {activeTab === 'FARMING' 
+                      ? 'Agrega Warframes y armas al planificador pulsando el botón ＋ en sus tarjetas para realizar el seguimiento de sus componentes y reliquias activas.'
+                      : 'No se encontraron ítems que coincidan con la combinación seleccionada de filtros de Maestría y Estado de Vault.'
+                    }
                   </p>
                 </div>
               ) : (
@@ -783,6 +788,29 @@ export function App() {
                           <span className="item-card-xp">
                             {isMastered ? '✓ MAX' : 'PENDIENTE'}
                           </span>
+                          {isFarmed && (
+                            <div 
+                              style={{ 
+                                fontSize: '10px', 
+                                color: '#00e5ff', 
+                                marginTop: '8px', 
+                                fontStyle: 'italic', 
+                                background: 'rgba(0, 229, 255, 0.05)', 
+                                padding: '4px 8px', 
+                                borderRadius: '4px', 
+                                borderLeft: '2px solid #00e5ff', 
+                                width: '100%', 
+                                textAlign: 'left', 
+                                boxSizing: 'border-box',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap'
+                              }}
+                              title={farmingList.find(f => f.itemId === item.id)?.notes}
+                            >
+                              📋 {farmingList.find(f => f.itemId === item.id)?.notes || 'Farmeando'}
+                            </div>
+                          )}
                         </div>
 
                         {/* HOVER OVERLAYS (Estadísticas o indicaciones de click) */}
