@@ -320,8 +320,7 @@ app.get('/api/relic-farming/vaulted', async (req, res) => {
     const primeItems = await prisma.item.findMany({
       where: {
         name: {
-          contains: 'Prime',
-          mode: 'insensitive'
+          contains: 'Prime'
         }
       },
       select: { id: true }
