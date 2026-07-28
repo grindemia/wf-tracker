@@ -56,30 +56,30 @@ erDiagram
 
     users {
         string id PK
-        string username "UNIQUE"
-        string email "UNIQUE"
+        string username
+        string email
         string passwordHash
         enum role
         datetime createdAt
     }
 
     items {
-        string id PK "ID provisto por API de Warframe"
+        string id PK
         string name
-        string uniqueName "UNIQUE"
+        string uniqueName
         enum category
         int masteryPoints
         int maxRank
         string wikiaUrl
         string imageUrl
-        json components "Componentes de farmeo"
+        json components
     }
 
     user_progress {
         string id PK
         string userId FK
         string itemId FK
-        enum status "PENDING | LEVELING | MASTERED"
+        enum status
         int currentRank
         datetime updatedAt
     }
@@ -88,7 +88,7 @@ erDiagram
         string id PK
         string userId FK
         string itemId FK
-        string notes "Comentarios del Tenno"
+        string notes
         datetime addedAt
     }
 ```
