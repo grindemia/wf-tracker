@@ -180,6 +180,7 @@ export function App() {
   const [activeTab, setActiveTab] = useState<ItemCategory | 'ALL' | 'FARMING'>('ALL');
   const [masteryFilter, setMasteryFilter] = useState<'ALL' | 'PENDING' | 'MASTERED'>('ALL');
   const [vaultFilter, setVaultFilter] = useState<'ALL' | 'ACTIVE' | 'VAULTED'>('ALL');
+  const [searchQuery, setSearchQuery] = useState('');
   const [selectedFarmItem, setSelectedFarmItem] = useState('');
   const [farmNotes, setFarmNotes] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
@@ -279,8 +280,18 @@ export function App() {
     } else if (vaultFilter === 'VAULTED') {
       result = result.filter(i => vaultedItemIds.has(i.id));
     }
+
+    // Filtro de Búsqueda por Nombre / Categoría
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      result = result.filter(i => 
+        i.name.toLowerCase().includes(query) || 
+        i.category.toLowerCase().includes(query)
+      );
+    }
+
     return result;
-  }, [items, activeTab, masteryFilter, vaultFilter, progressList, vaultedItemIds, farmingList]);
+  }, [items, activeTab, masteryFilter, vaultFilter, progressList, vaultedItemIds, farmingList, searchQuery]);
 
   // Manejo de Caso de Uso: Marcar como Masterizado
   const handleMarkAsMastered = async (itemId: string) => {
@@ -669,6 +680,61 @@ export function App() {
                       {tab === 'ALL' ? 'Todos' : tab === 'FARMING' ? '🎯 Planificador' : tab.replace('_', ' ')}
                     </button>
                   ))}
+                </div>
+
+                <div className="search-container" style={{ position: 'relative', display: 'flex', alignItems: 'center', minWidth: '220px', flex: '1 1 auto', maxWidth: '350px' }}>
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={e => setSearchQuery(e.target.value)}
+                    placeholder="🔍 Buscar por nombre..."
+                    style={{
+                      width: '100%',
+                      background: 'rgba(9, 10, 15, 0.7)',
+                      border: '1px solid rgba(0, 229, 255, 0.25)',
+                      borderRadius: '4px',
+                      padding: '0.45rem 2rem 0.45rem 0.8rem',
+                      color: '#fff',
+                      fontSize: '0.85rem',
+                      fontFamily: 'var(--font-title)',
+                      letterSpacing: '1px',
+                      textTransform: 'uppercase',
+                      outline: 'none',
+                      transition: 'all 0.3s ease',
+                      boxShadow: 'inset 0 0 5px rgba(0, 229, 255, 0.05)'
+                    }}
+                    onFocus={e => {
+                      e.target.style.borderColor = '#00e5ff';
+                      e.target.style.boxShadow = '0 0 10px rgba(0, 229, 255, 0.2)';
+                    }}
+                    onBlur={e => {
+                      e.target.style.borderColor = 'rgba(0, 229, 255, 0.25)';
+                      e.target.style.boxShadow = 'inset 0 0 5px rgba(0, 229, 255, 0.05)';
+                    }}
+                  />
+                  {searchQuery && (
+                    <button
+                      onClick={() => setSearchQuery('')}
+                      style={{
+                        position: 'absolute',
+                        right: '8px',
+                        background: 'transparent',
+                        border: 'none',
+                        color: 'rgba(255,255,255,0.4)',
+                        cursor: 'pointer',
+                        fontSize: '0.85rem',
+                        padding: '4px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        transition: 'color 0.2s'
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.color = '#ff6600'}
+                      onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'}
+                    >
+                      ✖
+                    </button>
+                  )}
                 </div>
                 
                 <div className="filters-group-container">
