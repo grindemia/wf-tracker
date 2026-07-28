@@ -12,7 +12,6 @@
   ],
   "exclude": [
     "src/presentation/**/*",
-    "src/infrastructure/api/**/*",
-    "src/infrastructure/db/prisma/seed.ts"
+    "src/infrastructure/api/**/*"
   ]
 }
