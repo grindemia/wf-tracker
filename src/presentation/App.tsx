@@ -414,7 +414,7 @@ export function App() {
               rel="noopener noreferrer" 
               className="youtube-badge"
             >
-              🔴 TRANSMISIÓN YOUTUBE
+              📺 CANAL YOUTUBE
             </a>
           </div>
         </div>
