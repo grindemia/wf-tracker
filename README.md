@@ -56,8 +56,8 @@ erDiagram
 
     users {
         string id PK
-        string username UNIQUE
-        string email UNIQUE
+        string username "UNIQUE"
+        string email "UNIQUE"
         string passwordHash
         enum role
         datetime createdAt
@@ -66,7 +66,7 @@ erDiagram
     items {
         string id PK "ID provisto por API de Warframe"
         string name
-        string uniqueName UNIQUE
+        string uniqueName "UNIQUE"
         enum category
         int masteryPoints
         int maxRank
