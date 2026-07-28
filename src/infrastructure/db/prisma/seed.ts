@@ -1,7 +1,18 @@
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
-import warframesJson from '../data/warframes.json';
-import relicsJson from '../data/relics.json';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+let currentDir = '';
+try {
+  currentDir = __dirname;
+} catch {
+  currentDir = path.dirname(fileURLToPath(import.meta.url));
+}
+
+const warframesJson = JSON.parse(fs.readFileSync(path.join(currentDir, '../data/warframes.json'), 'utf8'));
+const relicsJson = JSON.parse(fs.readFileSync(path.join(currentDir, '../data/relics.json'), 'utf8'));
 
 const prisma = new PrismaClient();
 
