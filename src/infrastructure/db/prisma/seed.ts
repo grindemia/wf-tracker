@@ -5,6 +5,7 @@ import path from 'path';
 
 const warframesJson = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/infrastructure/db/data/warframes.json'), 'utf8'));
 const relicsJson = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/infrastructure/db/data/relics.json'), 'utf8'));
+const primaryWeaponsJson = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/infrastructure/db/data/primary_weapons.json'), 'utf8'));
 
 const prisma = new PrismaClient();
 
@@ -116,10 +117,45 @@ async function main() {
     });
   }
 
-  // Items base (armas y compañeros)
+  // 2.2 Sembrar Armas Primarias desde el JSON
+  console.log('🔫 Sembrando todas las armas primarias desde el catálogo JSON...');
+  for (const pw of primaryWeaponsJson as any[]) {
+    await prisma.item.upsert({
+      where: { id: pw.id },
+      update: {
+        name: pw.name,
+        uniqueName: pw.uniqueName,
+        category: 'PRIMARY_WEAPON',
+        masteryPoints: pw.masteryPoints,
+        maxRank: pw.maxRank,
+        wikiaUrl: pw.wikiaUrl || null,
+        imageUrl: pw.imageUrl || null,
+        components: JSON.stringify({
+          masteryReq: pw.masteryReq,
+          isRecommended: pw.isRecommended,
+          acquisition: pw.acquisition
+        })
+      },
+      create: {
+        id: pw.id,
+        name: pw.name,
+        uniqueName: pw.uniqueName,
+        category: 'PRIMARY_WEAPON',
+        masteryPoints: pw.masteryPoints,
+        maxRank: pw.maxRank,
+        wikiaUrl: pw.wikiaUrl || null,
+        imageUrl: pw.imageUrl || null,
+        components: JSON.stringify({
+          masteryReq: pw.masteryReq,
+          isRecommended: pw.isRecommended,
+          acquisition: pw.acquisition
+        })
+      }
+    });
+  }
+
+  // Items base secundarios, cuerpo a cuerpo y compañeros
   const initialItems = [
-    { id: 'wp-hek', name: 'Hek', uniqueName: 'hek', category: 'PRIMARY_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Hek', imageUrl: 'https://cdn.warframestat.us/img/Hek.png', masteryReq: 4, isRecommended: true, acquisition: 'Plano en el Mercado por 25,000 Créditos. La mejor escopeta para empezar en el juego medio/bajo.' },
-    { id: 'wp-boltor', name: 'Boltor', uniqueName: 'boltor', category: 'PRIMARY_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Boltor', imageUrl: 'https://cdn.warframestat.us/img/Boltor.png', masteryReq: 2, isRecommended: true, acquisition: 'Plano en el Mercado o recompensa de la Convergencia de Mercurio a Marte. Rifle automático muy confiable.' },
     { id: 'wp-lex', name: 'Lex', uniqueName: 'lex', category: 'SECONDARY_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Lex', imageUrl: 'https://cdn.warframestat.us/img/Lex.png', masteryReq: 3, isRecommended: true, acquisition: 'Se compra directamente fabricada en el Mercado por 50,000 Créditos (no requiere forja).' },
     { id: 'wp-orthos', name: 'Orthos', uniqueName: 'orthos', category: 'MELEE_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Orthos', imageUrl: 'https://cdn.warframestat.us/img/Orthos.png', masteryReq: 2, isRecommended: true, acquisition: 'Plano en el Mercado por 15,000 Créditos. Arma de asta excelente por su gran alcance.' },
     { id: 'wp-skana', name: 'Skana', uniqueName: 'skana', category: 'MELEE_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Skana', imageUrl: 'https://cdn.warframestat.us/img/Skana.png', masteryReq: 0, isRecommended: false, acquisition: 'Elegible como arma inicial o Plano en el Mercado por 15,000 Créditos.' },
