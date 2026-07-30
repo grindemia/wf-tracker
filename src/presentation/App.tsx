@@ -260,6 +260,23 @@ export function App() {
     return Math.round((masteredCount / totalItemsCount) * 100);
   }, [masteredCount, totalItemsCount]);
 
+  const categoryStats = useMemo(() => {
+    const stats: Record<string, { mastered: number; total: number; percent: number }> = {};
+    const categories = ['WARFRAME', 'PRIMARY_WEAPON', 'SECONDARY_WEAPON', 'MELEE_WEAPON', 'COMPANION'] as const;
+
+    categories.forEach(cat => {
+      const catItems = items.filter(i => i.category === cat);
+      const catMastered = catItems.filter(i => getItemStatus(i.id) === 'MASTERED').length;
+      const total = catItems.length;
+      stats[cat] = {
+        mastered: catMastered,
+        total,
+        percent: total > 0 ? Math.round((catMastered / total) * 100) : 0
+      };
+    });
+    return stats;
+  }, [items, progressList]);
+
   // Filtrar ítems de la checklist
   const filteredItems = useMemo(() => {
     let result = items;
@@ -491,6 +508,60 @@ export function App() {
             <div className="xp-bar-bg">
               <div className="xp-bar-fill" style={{ width: `${completionPercent}%` }}></div>
             </div>
+          </div>
+
+          <div 
+            style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', 
+              gap: '12px', 
+              marginTop: '15px', 
+              borderTop: '1px solid rgba(255,255,255,0.08)', 
+              paddingTop: '15px' 
+            }}
+          >
+            {Object.entries(categoryStats).map(([cat, stat]) => {
+              const label = cat === 'WARFRAME' ? 'Warframes' 
+                : cat === 'PRIMARY_WEAPON' ? 'Primarias' 
+                : cat === 'SECONDARY_WEAPON' ? 'Secundarias' 
+                : cat === 'MELEE_WEAPON' ? 'Cuerpo a C.' 
+                : 'Compañeros';
+
+              return (
+                <div 
+                  key={cat} 
+                  style={{ 
+                    background: 'rgba(255, 255, 255, 0.02)', 
+                    border: '1px solid rgba(255, 255, 255, 0.05)', 
+                    borderRadius: '4px', 
+                    padding: '8px 10px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '4px'
+                  }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#ccc', fontFamily: 'var(--font-title)', letterSpacing: '1px', textTransform: 'uppercase' }}>
+                    <span>{label}</span>
+                    <span style={{ color: stat.percent === 100 ? 'var(--color-accent-gold)' : '#00e5ff', fontWeight: 'bold' }}>
+                      {stat.percent}%
+                    </span>
+                  </div>
+                  <div style={{ fontSize: '12px', color: '#fff', fontWeight: 'bold' }}>
+                    {stat.mastered} <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '10px' }}>/ {stat.total}</span>
+                  </div>
+                  <div style={{ height: '3px', background: 'rgba(255,255,255,0.1)', borderRadius: '2px', overflow: 'hidden', marginTop: '2px' }}>
+                    <div 
+                      style={{ 
+                        height: '100%', 
+                        width: `${stat.percent}%`, 
+                        background: stat.percent === 100 ? 'var(--color-accent-gold)' : 'linear-gradient(90deg, #00e5ff, #0088cc)',
+                        boxShadow: stat.percent === 100 ? '0 0 5px var(--color-accent-gold)' : '0 0 5px #00e5ff'
+                      }}
+                    ></div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </section>
 
@@ -895,20 +966,7 @@ export function App() {
               </div>
 
               {/* REJILLA DE TARJETAS DE INVENTARIO */}
-              {activeTab !== 'ALL' && activeTab !== 'WARFRAME' && activeTab !== 'FARMING' ? (
-                <div className="coming-soon-container">
-                  <div className="coming-soon-content">
-                    <span className="coming-soon-icon">📡</span>
-                    <h3 className="coming-soon-title">MÓDULO EN DESARROLLO</h3>
-                    <p className="coming-soon-subtitle">
-                      La base de datos de reliquias y el registro de maestría para <span className="highlight-tag">{activeTab.replace('_', ' ')}s</span> estarán disponibles en la próxima transmisión de Grindemia HUD.
-                    </p>
-                    <div className="coming-soon-loader">
-                      <div className="coming-soon-loader-bar"></div>
-                    </div>
-                  </div>
-                </div>
-              ) : filteredItems.length === 0 ? (
+              {filteredItems.length === 0 ? (
                 <div className="empty-checklist-container">
                   <span className="empty-checklist-icon">{activeTab === 'FARMING' ? '🎯' : '🛸'}</span>
                   <h4 className="empty-checklist-title">
