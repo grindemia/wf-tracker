@@ -185,6 +185,7 @@ export function App() {
   const [farmNotes, setFarmNotes] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [showGuide, setShowGuide] = useState(false);
+  const [showOnlyRecommended, setShowOnlyRecommended] = useState(false);
 
   // Estados para el Buscador de Reliquias
   const [selectedFarmingPathItemId, setSelectedFarmingPathItemId] = useState('-lotus-powersuits-saryn-sarynprime');
@@ -299,6 +300,11 @@ export function App() {
       result = result.filter(i => vaultedItemIds.has(i.id));
     }
 
+    // Filtro de recomendados para principiantes
+    if (showOnlyRecommended) {
+      result = result.filter(i => i.components?.isRecommended === true);
+    }
+
     // Filtro de Búsqueda por Nombre / Categoría
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
@@ -309,7 +315,7 @@ export function App() {
     }
 
     return result;
-  }, [items, activeTab, masteryFilter, vaultFilter, progressList, vaultedItemIds, farmingList, searchQuery]);
+  }, [items, activeTab, masteryFilter, vaultFilter, showOnlyRecommended, progressList, vaultedItemIds, farmingList, searchQuery]);
 
   // Manejo de Caso de Uso: Marcar como Masterizado
   const handleMarkAsMastered = async (itemId: string) => {
@@ -960,6 +966,17 @@ export function App() {
                       className={`filter-btn ${vaultFilter === 'VAULTED' ? 'active orange' : ''}`}
                     >
                       Vaulted 🔒
+                    </button>
+                  </div>
+
+                  <div className="mastery-filters">
+                    <span className="filter-label">Especial:</span>
+                    <button
+                      onClick={() => setShowOnlyRecommended(prev => !prev)}
+                      className={`filter-btn ${showOnlyRecommended ? 'active' : ''}`}
+                      style={showOnlyRecommended ? { border: '1px solid #4ade80', color: '#4ade80', background: 'rgba(74, 222, 128, 0.05)', boxShadow: '0 0 10px rgba(74, 222, 128, 0.2)' } : {}}
+                    >
+                      🔰 Recomendados
                     </button>
                   </div>
                 </div>
