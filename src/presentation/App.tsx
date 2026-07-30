@@ -184,6 +184,7 @@ export function App() {
   const [selectedFarmItem, setSelectedFarmItem] = useState('');
   const [farmNotes, setFarmNotes] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+  const [showGuide, setShowGuide] = useState(false);
 
   // Estados para el Buscador de Reliquias
   const [selectedFarmingPathItemId, setSelectedFarmingPathItemId] = useState('-lotus-powersuits-saryn-sarynprime');
@@ -446,8 +447,40 @@ export function App() {
                 <h2 className="tenno-name">Grindemia_Tenno</h2>
               </div>
             </div>
-            <div className="rank-display">
-              COMPLETADO: {masteredCount} / {totalItemsCount}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px' }}>
+              <div className="rank-display">
+                COMPLETADO: {masteredCount} / {totalItemsCount}
+              </div>
+              <button 
+                onClick={() => setShowGuide(!showGuide)}
+                style={{
+                  background: 'transparent',
+                  border: '1px solid var(--color-accent-gold)',
+                  color: 'var(--color-accent-gold)',
+                  padding: '4px 12px',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontSize: '11px',
+                  fontWeight: 'bold',
+                  fontFamily: 'var(--font-title)',
+                  letterSpacing: '1px',
+                  textTransform: 'uppercase',
+                  transition: 'all 0.2s',
+                  boxShadow: '0 0 5px rgba(230, 194, 41, 0.1)'
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.background = 'var(--color-accent-gold)';
+                  e.currentTarget.style.color = '#090a0f';
+                  e.currentTarget.style.boxShadow = '0 0 10px rgba(230, 194, 41, 0.4)';
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.background = 'transparent';
+                  e.currentTarget.style.color = 'var(--color-accent-gold)';
+                  e.currentTarget.style.boxShadow = '0 0 5px rgba(230, 194, 41, 0.1)';
+                }}
+              >
+                {showGuide ? '⚠️ CERRAR ACADEMIA' : '🎓 ACADEMIA TENNO'}
+              </button>
             </div>
           </div>
           <div className="xp-bar-container">
@@ -460,6 +493,64 @@ export function App() {
             </div>
           </div>
         </section>
+
+        {showGuide && (
+          <div 
+            style={{ 
+              background: 'rgba(9, 10, 15, 0.9)', 
+              border: '1px solid var(--color-accent-gold)', 
+              borderRadius: '8px', 
+              padding: '20px', 
+              marginBottom: '20px',
+              fontFamily: "'Inter', sans-serif",
+              boxShadow: '0 0 20px rgba(230, 194, 41, 0.15)',
+              borderLeft: '5px solid var(--color-accent-gold)'
+            }}
+          >
+            <h3 style={{ fontFamily: 'var(--font-title)', color: 'var(--color-accent-gold)', letterSpacing: '2px', textTransform: 'uppercase', fontSize: '1.2rem', marginBottom: '15px', borderBottom: '1px solid rgba(230,194,41,0.2)', paddingBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px', margin: 0 }}>
+              🎓 ACADEMIA TENNO DE GRINDEMIA
+            </h3>
+            
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginTop: '15px' }}>
+              <div>
+                <h4 style={{ color: '#00e5ff', fontSize: '0.95rem', marginBottom: '8px', fontFamily: 'var(--font-title)', letterSpacing: '1px', marginTop: 0 }}>
+                  📊 ¿CÓMO SE OBTIENE LA EXPERIENCIA (XP)?
+                </h4>
+                <p style={{ fontSize: '0.85rem', lineHeight: '1.5', color: '#ccc', margin: '0 0 10px 0' }}>
+                  En Warframe, subir el nivel de tu equipamiento aumenta tu <strong>Rango de Maestría (MR)</strong> general.
+                </p>
+                <ul style={{ fontSize: '0.85rem', color: '#ccc', paddingLeft: '20px', margin: '0' }}>
+                  <li style={{ marginBottom: '6px' }}><strong style={{ color: '#fff' }}>Warframes y Compañeros:</strong> Otorgan <span style={{ color: 'var(--color-accent-gold)' }}><strong>200 XP</strong> por nivel</span> (Total de 6,000 XP al nivel 30).</li>
+                  <li style={{ marginBottom: '6px' }}><strong style={{ color: '#fff' }}>Armas:</strong> Otorgan <span style={{ color: 'var(--color-accent-gold)' }}><strong>100 XP</strong> por nivel</span> (Total de 3,000 XP al nivel 30).</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 style={{ color: '#00e5ff', fontSize: '0.95rem', marginBottom: '8px', fontFamily: 'var(--font-title)', letterSpacing: '1px', marginTop: 0 }}>
+                  🔑 LA REGLA DE ORO DE LAS FORMAS
+                </h4>
+                <p style={{ fontSize: '0.85rem', lineHeight: '1.5', color: '#ccc', margin: '0 0 10px 0' }}>
+                  Solo recibes puntos de maestría por subir un objeto de nivel <strong>la primera vez</strong>.
+                </p>
+                <ul style={{ fontSize: '0.85rem', color: '#ccc', paddingLeft: '20px', margin: '0' }}>
+                  <li style={{ marginBottom: '6px' }}>Si aplicas una <strong>Forma</strong> para reiniciar un objeto a nivel 0, subirlo de nuevo <span style={{ color: '#ff6600' }}><strong>NO</strong> otorga más maestría</span>.</li>
+                  <li style={{ marginBottom: '6px' }}>Para subir de MR, debes conseguir y nivelar <strong>armas y warframes nuevos</strong> que no hayas completado antes.</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 style={{ color: '#00e5ff', fontSize: '0.95rem', marginBottom: '8px', fontFamily: 'var(--font-title)', letterSpacing: '1px', marginTop: 0 }}>
+                  💡 CONSEJOS PARA EMPEZAR
+                </h4>
+                <p style={{ fontSize: '0.85rem', lineHeight: '1.5', color: '#ccc', margin: '0' }}>
+                  1. <strong>No vendas nada:</strong> Sube siempre tus armas a nivel 30 antes de venderlas para liberar ranuras.<br/>
+                  2. <strong>Filtro Recomendados:</strong> En la lista de abajo, busca ítems con el sello <strong>🔰 RECOMENDADO</strong>. Son excelentes opciones iniciales fáciles de fabricar.<br/>
+                  3. <strong>MR Requerido:</strong> Verifica el candado de nivel en cada tarjeta para no farmear cosas que aún no puedes usar.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
 
         {errorMsg && (
           <div style={{ background: 'rgba(255, 85, 0, 0.1)', border: '1px solid var(--color-accent-orange)', color: '#ff6600', padding: '0.85rem 1.25rem', fontSize: '0.85rem', fontFamily: 'var(--font-title)', letterSpacing: '1px', borderLeftWidth: '4px' }}>
@@ -517,6 +608,18 @@ export function App() {
                         <span className="info-cell-label">Rango Máximo</span>
                         <span className="info-cell-val">Rango {selectedItem.maxRank}</span>
                       </div>
+                      {selectedItem.components?.masteryReq !== undefined && selectedItem.components?.masteryReq > 0 && (
+                        <div className="info-cell">
+                          <span className="info-cell-label">MR Requerido</span>
+                          <span className="info-cell-val" style={{ color: '#ff6600', fontWeight: 'bold' }}>Rango {selectedItem.components.masteryReq}</span>
+                        </div>
+                      )}
+                      {selectedItem.components?.isRecommended && (
+                        <div className="info-cell">
+                          <span className="info-cell-label">Principiantes</span>
+                          <span className="info-cell-val" style={{ color: '#4ade80', fontWeight: 'bold' }}>🔰 Recomendado</span>
+                        </div>
+                      )}
                       {selectedItem.wikiaUrl && (
                         <div className="info-cell">
                           <span className="info-cell-label">Base de Datos</span>
@@ -644,9 +747,16 @@ export function App() {
                       </div>
                     </>
                   ) : (
-                    <div className="standard-obtention-card">
-                      <p className="standard-obtention-text">
-                        {selectedItem.name.toLowerCase().includes('prime') ? (
+                    <div className="standard-obtention-card" style={{ borderLeft: '3px solid var(--color-accent-gold)', paddingLeft: '1rem', background: 'rgba(230, 194, 41, 0.03)' }}>
+                      <p className="standard-obtention-text" style={{ margin: 0, lineHeight: '1.6' }}>
+                        {selectedItem.components?.acquisition ? (
+                          <>
+                            <strong style={{ color: 'var(--color-accent-gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-title)', letterSpacing: '1px', textTransform: 'uppercase', fontSize: '0.9rem' }}>
+                              📍 UBICACIÓN DE OBTENCIÓN DETALLADA:
+                            </strong>
+                            {selectedItem.components.acquisition}
+                          </>
+                        ) : selectedItem.name.toLowerCase().includes('prime') ? (
                           "Este item Prime es de edición limitada y no cuenta con reliquias activas en la base de datos o se encuentra temporalmente en el Vault del Vacío."
                         ) : (
                           `Los componentes y planos de ${selectedItem.name} se adquieren de forma estándar en el juego: comprando el plano en el Mercado por créditos, completando misiones específicas, o derrotando jefes de planeta en el Sistema de Origen.`
@@ -828,13 +938,51 @@ export function App() {
                         title="Haz clic para ver detalles e información de obtención"
                       >
                         <div className="item-card-header">
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', flexWrap: 'wrap', gap: '4px' }}>
                             <span className="item-card-cat">{item.category.replace('_', ' ')}</span>
-                            {isPrime && (
-                              <span className="prime-badge">
-                                🌌 Reliquias
-                              </span>
-                            )}
+                            <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
+                              {item.components?.isRecommended && (
+                                <span 
+                                  style={{
+                                    background: 'rgba(74, 222, 128, 0.1)',
+                                    border: '1px solid #4ade80',
+                                    color: '#4ade80',
+                                    fontSize: '9px',
+                                    padding: '2px 6px',
+                                    borderRadius: '3px',
+                                    fontWeight: 'bold',
+                                    fontFamily: 'var(--font-title)',
+                                    letterSpacing: '1px'
+                                  }}
+                                  title="Excelente equipamiento fácil de obtener para empezar"
+                                >
+                                  🔰 REC
+                                </span>
+                              )}
+                              {item.components?.masteryReq > 0 && (
+                                <span 
+                                  style={{
+                                    background: 'rgba(255, 102, 0, 0.1)',
+                                    border: '1px solid #ff6600',
+                                    color: '#ff6600',
+                                    fontSize: '9px',
+                                    padding: '2px 6px',
+                                    borderRadius: '3px',
+                                    fontWeight: 'bold',
+                                    fontFamily: 'var(--font-title)',
+                                    letterSpacing: '1px'
+                                  }}
+                                  title={`Requiere Rango de Maestría ${item.components.masteryReq}`}
+                                >
+                                  🔒 MR {item.components.masteryReq}
+                                </span>
+                              )}
+                              {isPrime && (
+                                <span className="prime-badge">
+                                  🌌 Reliquias
+                                </span>
+                              )}
+                            </div>
                           </div>
                           <span className="item-card-name">{item.name}</span>
                         </div>

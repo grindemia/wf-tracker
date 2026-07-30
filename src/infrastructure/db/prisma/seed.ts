@@ -3,10 +3,8 @@ import bcrypt from 'bcrypt';
 import fs from 'fs';
 import path from 'path';
 
-const currentDir = __dirname;
-
-const warframesJson = JSON.parse(fs.readFileSync(path.join(currentDir, '../data/warframes.json'), 'utf8'));
-const relicsJson = JSON.parse(fs.readFileSync(path.join(currentDir, '../data/relics.json'), 'utf8'));
+const warframesJson = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/infrastructure/db/data/warframes.json'), 'utf8'));
+const relicsJson = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/infrastructure/db/data/relics.json'), 'utf8'));
 
 const prisma = new PrismaClient();
 
@@ -48,6 +46,32 @@ async function main() {
   
   // Warframes del JSON
   for (const w of warframesJson as any[]) {
+    // Definimos si es recomendado para principiantes
+    const recommendedFrames = ['Rhino', 'Excalibur', 'Volt', 'Mag', 'Loki', 'Saryn Prime'];
+    const isRec = recommendedFrames.includes(w.name);
+    
+    // Rango de Maestría requerido para Warframes
+    let mrReq = 0;
+    if (w.name.includes('Prime')) {
+      mrReq = 8; // Mayoría de warframes prime requieren MR 8
+    }
+
+    // Ubicación de obtención específica
+    let acq = '';
+    if (w.name === 'Rhino') {
+      acq = 'Planos de componentes derrotando a Jackal (Fossa, Venus). Plano principal en el Mercado.';
+    } else if (w.name === 'Excalibur') {
+      acq = 'Elegible como personaje inicial o derrotando a Lech Kril (War, Marte). Plano principal en el Mercado.';
+    } else if (w.name === 'Volt') {
+      acq = 'Planos en el Laboratorio Tenno del Dojo de tu Clan. Elegible como personaje inicial.';
+    } else if (w.name === 'Mag') {
+      acq = 'Elegible como personaje inicial o derrotando a The Sergeant (Iliad, Fobos). Plano principal en el Mercado.';
+    } else if (w.name.includes('Prime')) {
+      acq = 'Apertura de Reliquias del Vacío activas en el Sistema de Origen.';
+    } else {
+      acq = 'Componentes derrotando al jefe de su planeta respectivo. Plano principal en el Mercado.';
+    }
+
     await prisma.item.upsert({
       where: { id: w.id },
       update: {
@@ -63,7 +87,10 @@ async function main() {
           shield: w.shield,
           armor: w.armor,
           energy: w.energy,
-          sprint: w.sprint
+          sprint: w.sprint,
+          masteryReq: mrReq,
+          isRecommended: isRec,
+          acquisition: acq
         })
       },
       create: {
@@ -80,7 +107,10 @@ async function main() {
           shield: w.shield,
           armor: w.armor,
           energy: w.energy,
-          sprint: w.sprint
+          sprint: w.sprint,
+          masteryReq: mrReq,
+          isRecommended: isRec,
+          acquisition: acq
         })
       }
     });
@@ -88,15 +118,15 @@ async function main() {
 
   // Items base (armas y compañeros)
   const initialItems = [
-    { id: 'wp-hek', name: 'Hek', uniqueName: 'hek', category: 'PRIMARY_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Hek', imageUrl: 'https://cdn.warframestat.us/img/Hek.png' },
-    { id: 'wp-boltor', name: 'Boltor', uniqueName: 'boltor', category: 'PRIMARY_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Boltor', imageUrl: 'https://cdn.warframestat.us/img/Boltor.png' },
-    { id: 'wp-lex', name: 'Lex', uniqueName: 'lex', category: 'SECONDARY_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Lex', imageUrl: 'https://cdn.warframestat.us/img/Lex.png' },
-    { id: 'wp-orthos', name: 'Orthos', uniqueName: 'orthos', category: 'MELEE_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Orthos', imageUrl: 'https://cdn.warframestat.us/img/Orthos.png' },
-    { id: 'wp-skana', name: 'Skana', uniqueName: 'skana', category: 'MELEE_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Skana', imageUrl: 'https://cdn.warframestat.us/img/Skana.png' },
-    { id: 'cp-carrier', name: 'Carrier', uniqueName: 'carrier', category: 'COMPANION', masteryPoints: 6000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Carrier', imageUrl: 'https://cdn.warframestat.us/img/Carrier.png' },
-    { id: 'cp-diriga', name: 'Diriga', uniqueName: 'diriga', category: 'COMPANION', masteryPoints: 6000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Diriga', imageUrl: 'https://cdn.warframestat.us/img/Diriga.png' },
-    { id: 'lex-prime', name: 'Lex Prime', uniqueName: '/Lotus/Types/Weapons/LexPrime', category: 'SECONDARY_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Lex/Prime', imageUrl: 'https://cdn.warframestat.us/img/LexPrime.png' },
-    { id: 'orthos-prime', name: 'Orthos Prime', uniqueName: '/Lotus/Types/Weapons/OrthosPrime', category: 'MELEE_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Orthos/Prime', imageUrl: 'https://cdn.warframestat.us/img/OrthosPrime.png' }
+    { id: 'wp-hek', name: 'Hek', uniqueName: 'hek', category: 'PRIMARY_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Hek', imageUrl: 'https://cdn.warframestat.us/img/Hek.png', masteryReq: 4, isRecommended: true, acquisition: 'Plano en el Mercado por 25,000 Créditos. La mejor escopeta para empezar en el juego medio/bajo.' },
+    { id: 'wp-boltor', name: 'Boltor', uniqueName: 'boltor', category: 'PRIMARY_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Boltor', imageUrl: 'https://cdn.warframestat.us/img/Boltor.png', masteryReq: 2, isRecommended: true, acquisition: 'Plano en el Mercado o recompensa de la Convergencia de Mercurio a Marte. Rifle automático muy confiable.' },
+    { id: 'wp-lex', name: 'Lex', uniqueName: 'lex', category: 'SECONDARY_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Lex', imageUrl: 'https://cdn.warframestat.us/img/Lex.png', masteryReq: 3, isRecommended: true, acquisition: 'Se compra directamente fabricada en el Mercado por 50,000 Créditos (no requiere forja).' },
+    { id: 'wp-orthos', name: 'Orthos', uniqueName: 'orthos', category: 'MELEE_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Orthos', imageUrl: 'https://cdn.warframestat.us/img/Orthos.png', masteryReq: 2, isRecommended: true, acquisition: 'Plano en el Mercado por 15,000 Créditos. Arma de asta excelente por su gran alcance.' },
+    { id: 'wp-skana', name: 'Skana', uniqueName: 'skana', category: 'MELEE_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Skana', imageUrl: 'https://cdn.warframestat.us/img/Skana.png', masteryReq: 0, isRecommended: false, acquisition: 'Elegible como arma inicial o Plano en el Mercado por 15,000 Créditos.' },
+    { id: 'cp-carrier', name: 'Carrier', uniqueName: 'carrier', category: 'COMPANION', masteryPoints: 6000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Carrier', imageUrl: 'https://cdn.warframestat.us/img/Carrier.png', masteryReq: 0, isRecommended: true, acquisition: 'Plano en el Mercado por 100,000 Créditos. Sentinel que aspira recursos cercanos y convierte munición.' },
+    { id: 'cp-diriga', name: 'Diriga', uniqueName: 'diriga', category: 'COMPANION', masteryPoints: 6000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Diriga', imageUrl: 'https://cdn.warframestat.us/img/Diriga.png', masteryReq: 0, isRecommended: false, acquisition: 'Plano en el Mercado por 100,000 Créditos. Ataca enemigos a distancia y carga escudos.' },
+    { id: 'lex-prime', name: 'Lex Prime', uniqueName: '/Lotus/Types/Weapons/LexPrime', category: 'SECONDARY_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Lex/Prime', imageUrl: 'https://cdn.warframestat.us/img/LexPrime.png', masteryReq: 12, isRecommended: false, acquisition: 'Apertura de Reliquias del Vacío activas.' },
+    { id: 'orthos-prime', name: 'Orthos Prime', uniqueName: '/Lotus/Types/Weapons/OrthosPrime', category: 'MELEE_WEAPON', masteryPoints: 3000, maxRank: 30, wikiaUrl: 'https://warframe.fandom.com/wiki/Orthos/Prime', imageUrl: 'https://cdn.warframestat.us/img/OrthosPrime.png', masteryReq: 12, isRecommended: false, acquisition: 'Apertura de Reliquias del Vacío activas.' }
   ];
 
   for (const item of initialItems) {
@@ -109,7 +139,12 @@ async function main() {
         masteryPoints: item.masteryPoints,
         maxRank: item.maxRank,
         wikiaUrl: item.wikiaUrl,
-        imageUrl: item.imageUrl
+        imageUrl: item.imageUrl,
+        components: JSON.stringify({
+          masteryReq: item.masteryReq,
+          isRecommended: item.isRecommended,
+          acquisition: item.acquisition
+        })
       },
       create: {
         id: item.id,
@@ -119,7 +154,12 @@ async function main() {
         masteryPoints: item.masteryPoints,
         maxRank: item.maxRank,
         wikiaUrl: item.wikiaUrl,
-        imageUrl: item.imageUrl
+        imageUrl: item.imageUrl,
+        components: JSON.stringify({
+          masteryReq: item.masteryReq,
+          isRecommended: item.isRecommended,
+          acquisition: item.acquisition
+        })
       }
     });
   }
